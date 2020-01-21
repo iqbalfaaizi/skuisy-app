@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:skuisy_project/utils/api_service.dart';
 
 class HomePage extends StatefulWidget {
