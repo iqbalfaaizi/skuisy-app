@@ -27,9 +27,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Yeyeye"),
-      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         child: Center(
