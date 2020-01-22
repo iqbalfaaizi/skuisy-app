@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/ui/auth/login_page.dart';
 import 'package:skuisy_project/ui/src/global_functions.dart';
 
 class SignupPage extends StatefulWidget {
@@ -118,13 +119,31 @@ class _SignupPageState extends State<SignupPage> {
                     fontSize: 40,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               email,
-              SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               password,
-              SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               repassword,
-              SizedBox(height: 50),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              func.authButtons(context, 'SIGN UP', 'signup'),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Already registered?',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  FlatButton(
+                    child: Text(
+                      'LOGIN HERE',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () => Navigator.of(context).pushNamed(LoginPage.tag),
+                  )
+                ],
+              )
             ]),
           ),
         ],
@@ -135,7 +154,7 @@ class _SignupPageState extends State<SignupPage> {
       theme: ThemeData(primaryColor: Colors.white),
       home: Scaffold(
         backgroundColor: Color(0xff800000), 
-        body: _buildBody
+        body: _buildBody,
       ),
     );
   }

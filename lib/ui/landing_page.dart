@@ -28,20 +28,20 @@ class _LandingPageState extends State<LandingPage> {
                   colors: [Color(0xff800000),Color(0xff800000),],
                   begin: Alignment.topCenter)),
           child: Center(
-              child: ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              logo,
-            ],
-          )),
+            child: ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                logo,
+              ],
+            )),
         ),
         bottomSheet: Container(
           color: Color(0xff800000),
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              func.buttons(context, 'LOGIN', 'login-page'),
-              func.buttons(context, 'SIGN UP', 'signup-page')
+              func.landingButtons(context, 'LOGIN', 'login-page'),
+              func.landingButtons(context, 'SIGNUP', 'signup-page')
             ],
           ),
         ));

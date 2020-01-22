@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/ui/auth/signup_page.dart';
+import 'package:skuisy_project/ui/src/global_functions.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -7,6 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  GlobalFunctions func = new GlobalFunctions();
   final _formKey = GlobalKey<FormState>();
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
@@ -89,7 +92,25 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50),
                 email,
                 SizedBox(height: 20),
-                password
+                password,
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                func.authButtons(context, 'LOGIN', 'login'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Want to join?',
+                      style: TextStyle(color: Color(0xff800000)),
+                    ),
+                    FlatButton(
+                      child: Text(
+                        'SIGN UP HERE',
+                        style: TextStyle(color: Color(0xff800000), fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () => Navigator.of(context).pushNamed(SignupPage.tag),
+                    )
+                  ],
+                )
               ]),
             ),
           ],
