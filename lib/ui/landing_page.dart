@@ -27,13 +27,7 @@ class _LandingPageState extends State<LandingPage> {
               gradient: LinearGradient(
                   colors: [Color(0xff800000),Color(0xff800000),],
                   begin: Alignment.topCenter)),
-          child: Center(
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                logo,
-              ],
-            )),
+          child: Center(child: logo),
         ),
         bottomSheet: Container(
           color: Color(0xff800000),

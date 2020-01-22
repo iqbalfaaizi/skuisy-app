@@ -41,7 +41,7 @@ class GlobalFunctions {
         padding: EdgeInsets.symmetric(vertical: 6.0),
         child: MaterialButton(
           minWidth: 100.0,
-          height: MediaQuery.of(context).size.height * 0.05,
+          height: MediaQuery.of(context).size.height * 0.06,
           elevation: 0,
           shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(32),
@@ -49,12 +49,6 @@ class GlobalFunctions {
           ),
           color: tag == 'signup' ? Colors.white : Color(0xff800000),
           onPressed: onSignupPressed,
-          // () {
-          //   if(_formKey.currentState.validate()) {
-          //     onSignupPressed
-          //   }
-          // },
-            // tag == 'signup' ? onSignupPressed() : onLoginPressed();
           child: Text(
             val, 
             style: TextStyle(

@@ -15,11 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _passCtrl = TextEditingController();
   bool _showPass = false;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   onLoginPressed() async {}
 
   @override
@@ -30,8 +25,8 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       style: TextStyle(color: Color(0xff800000)),
       decoration: InputDecoration(
-        hintText: 'Email',
-        hintStyle: TextStyle(color: Color(0xff800000)),
+        labelText: 'Email',
+        labelStyle: TextStyle(color: Color(0xff800000), fontFamily: 'sans-serif-light'),
         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xff800000), width: 2.0),
@@ -51,8 +46,8 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       style: TextStyle(color: Color(0xff800000)),
       decoration: InputDecoration(
-          hintText: 'Password',
-          hintStyle: TextStyle(color: Color(0xff800000)),
+          labelText: 'Password',
+          labelStyle: TextStyle(color: Color(0xff800000), fontFamily: 'sans-serif-light'),
           contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xff800000), width: 2.0),
@@ -62,7 +57,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           prefixIcon: Icon(Icons.vpn_key, color: Color(0xff800000)),
           suffixIcon: IconButton(
-            icon: Icon(Icons.remove_red_eye,
+            icon: Icon(
+              Icons.remove_red_eye,
               color: Color(0xff800000),
               size: 20,
             ),
@@ -71,8 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 _showPass == false ? _showPass = true : _showPass = false;
               });
             },
-          )
-        ),
+          )),
     );
 
     final _buildBody = Container(
@@ -89,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                       color: Color(0xff800000),
                       fontSize: 40,
-                      fontWeight: FontWeight.bold),
+                      fontFamily: 'LemonMilk'),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 email,
@@ -107,9 +102,12 @@ class _LoginPageState extends State<LoginPage> {
                     FlatButton(
                       child: Text(
                         'SIGN UP HERE',
-                        style: TextStyle(color: Color(0xff800000), fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Color(0xff800000),
+                            fontWeight: FontWeight.bold),
                       ),
-                      onPressed: () => Navigator.of(context).pushNamed(SignupPage.tag),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(SignupPage.tag),
                     )
                   ],
                 )

@@ -49,6 +49,22 @@ flutter:
   assets:
     - assets/logo.png
 
+  fonts:
+    - family: LemonMilk
+      fonts:
+        - asset: assets/fonts/LEMONMILK-Bold.otf
+        - asset: assets/fonts/LEMONMILK-BoldItalic.otf
+        - asset: assets/fonts/LEMONMILK-Light.otf
+        - asset: assets/fonts/LEMONMILK-LightItalic.otf
+        - asset: assets/fonts/LEMONMILK-Medium.otf
+        - asset: assets/fonts/LEMONMILK-MediumItalic.otf
+        - asset: assets/fonts/LEMONMILK-Regular.otf
+        - asset: assets/fonts/LEMONMILK-RegularItalic.otf
+
+    - family: CODE
+      fonts:
+        - asset: assets/fonts/CODE-Bold.otf
+        - asset: assets/fonts/CODE-Light.otf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

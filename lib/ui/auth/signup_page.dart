@@ -16,6 +16,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  ApiService _apiService = new ApiService();
   final _formKey = GlobalKey<FormState>();
   bool _showPass = false, _rePass = false;
   String email = '';
@@ -24,16 +25,15 @@ class _SignupPageState extends State<SignupPage> {
 
   onSignupPressed() async {
     if (_formKey.currentState.validate()) {
-      ApiService _apiService = new ApiService();
-      final res = await _apiService.signUp(email, password);
-      print(res);
-      return res;
+      if(password != repassword) {
+        func.alertDialog(context, 'Re-Type Password did not match!');
+      } else {
+        final res = await _apiService.signUp(email, password);
+        if(res.toString() == 'success') {
+          func.alertDialog(context, 'Successfully Registered');
+        }
+      }
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -49,8 +49,8 @@ class _SignupPageState extends State<SignupPage> {
       },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Email',
-        hintStyle: TextStyle(color: Colors.white),
+        labelText: 'Email',
+        labelStyle: TextStyle(color: Colors.white, fontFamily: 'sans-serif-light'),
         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white, width: 2.0),
@@ -59,6 +59,7 @@ class _SignupPageState extends State<SignupPage> {
           borderRadius: BorderRadius.circular(32),
         ),
         prefixIcon: Icon(Icons.mail, color: Colors.white60),
+        errorStyle: TextStyle(color: Colors.yellow)
       ),
     );
 
@@ -75,8 +76,8 @@ class _SignupPageState extends State<SignupPage> {
       },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Password',
-        hintStyle: TextStyle(color: Colors.white),
+        labelText: 'Password',
+        labelStyle: TextStyle(color: Colors.white, fontFamily: 'sans-serif-light'),
         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white, width: 2.0),
@@ -84,7 +85,7 @@ class _SignupPageState extends State<SignupPage> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32),
         ),
-        prefixIcon: Icon(Icons.vpn_key, color: Colors.white60),
+        prefixIcon: Icon(Icons.lock, color: Colors.white60),
         suffixIcon: IconButton(
           icon: Icon(
             Icons.remove_red_eye,
@@ -97,6 +98,7 @@ class _SignupPageState extends State<SignupPage> {
             });
           },
         ),
+        errorStyle: TextStyle(color: Colors.yellow)
       ),
     );
 
@@ -113,8 +115,8 @@ class _SignupPageState extends State<SignupPage> {
         },
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          hintText: 'Re-Type Password',
-          hintStyle: TextStyle(color: Colors.white),
+          labelText: 'Re-Type Password',
+          labelStyle: TextStyle(color: Colors.white, fontFamily: 'sans-serif-light'),
           contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white, width: 2.0),
@@ -122,7 +124,7 @@ class _SignupPageState extends State<SignupPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(32),
           ),
-          prefixIcon: Icon(Icons.vpn_key, color: Colors.white60),
+          prefixIcon: Icon(Icons.lock, color: Colors.white60),
           suffixIcon: IconButton(
             icon: Icon(
               Icons.remove_red_eye,
@@ -135,6 +137,7 @@ class _SignupPageState extends State<SignupPage> {
               });
             },
           ),
+          errorStyle: TextStyle(color: Colors.yellow)
         ));
 
     final _buildBody = Container(
@@ -150,9 +153,7 @@ class _SignupPageState extends State<SignupPage> {
               Text(
                 'SIGN UP',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
+                    color: Colors.white, fontSize: 40, fontFamily: 'LemonMilk'),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               email,
