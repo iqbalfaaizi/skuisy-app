@@ -1,4 +1,4 @@
-import 'package:skuisy_project/utils/api_service.dart';
+import 'package:skuisy_project/src/api_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 ApiService _apiService = new ApiService();

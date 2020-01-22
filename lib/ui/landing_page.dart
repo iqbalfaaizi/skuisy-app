@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/src/global_functions.dart';
+import 'package:skuisy_project/src/global_functions.dart';
 
 class LandingPage extends StatefulWidget {
   @override

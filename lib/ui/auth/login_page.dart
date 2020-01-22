@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/auth/signup_page.dart';
-import 'package:skuisy_project/ui/src/global_functions.dart';
+import 'package:skuisy_project/src/global_functions.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -19,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
   }
+
+  onLoginPressed() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 password,
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                func.authButtons(context, 'LOGIN', 'login'),
+                func.authButtons(context, 'LOGIN', 'login', onLoginPressed),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[

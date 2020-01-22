@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/src/api_service.dart';
+import 'package:skuisy_project/ui/auth/signup_page.dart';
+import 'package:skuisy_project/ui/auth/login_page.dart';
 
 class GlobalFunctions {
-
   Widget landingButtons(BuildContext context, String val, String tag){
     return Container(
       padding: tag == 'signup-page' ? EdgeInsets.fromLTRB(10, 0, 10, 20) : EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -31,7 +33,7 @@ class GlobalFunctions {
       ));
   }
 
-  Widget authButtons(BuildContext context, String val, String tag){
+  Widget authButtons(BuildContext context, String val, String tag, Function onSignupPressed){
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       // padding: tag == 'signup-page' ? EdgeInsets.fromLTRB(10, 0, 10, 20) : EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -46,9 +48,13 @@ class GlobalFunctions {
                 side: BorderSide(color: Colors.white, width: 2.5)
           ),
           color: tag == 'signup' ? Colors.white : Color(0xff800000),
-          onPressed: () {
-            print('huehuehue');
-          },
+          onPressed: onSignupPressed,
+          // () {
+          //   if(_formKey.currentState.validate()) {
+          //     onSignupPressed
+          //   }
+          // },
+            // tag == 'signup' ? onSignupPressed() : onLoginPressed();
           child: Text(
             val, 
             style: TextStyle(

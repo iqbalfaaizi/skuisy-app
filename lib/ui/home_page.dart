@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/utils/api_service.dart';
+import 'package:skuisy_project/src/api_service.dart';
 
 class HomePage extends StatefulWidget {
   static String tag = 'home-page';

@@ -1,27 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/src/api_service.dart';
 import 'package:skuisy_project/ui/auth/login_page.dart';
-import 'package:skuisy_project/ui/src/global_functions.dart';
+import 'package:skuisy_project/src/global_functions.dart';
+import 'package:dio/dio.dart';
+import 'package:skuisy_project/utils/utils.dart';
+
+Dio dio = new Dio();
+GlobalFunctions func = new GlobalFunctions();
 
 class SignupPage extends StatefulWidget {
   static String tag = 'signup-page';
+
   @override
   _SignupPageState createState() => _SignupPageState();
 }
 
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailCtrl = TextEditingController();
-  final _passCtrl = TextEditingController();
-  final _repassCtrl = TextEditingController();
   bool _showPass = false, _rePass = false;
-  GlobalFunctions func = new GlobalFunctions();
+  String email = '';
+  String password = '';
+  String repassword = '';
+
+  onSignupPressed() async {
+    if (_formKey.currentState.validate()) {
+      ApiService _apiService = new ApiService();
+      final res = await _apiService.signUp(email, password);
+      print(res);
+      return res;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final email = TextFormField(
-      controller: _emailCtrl,
+      validator: (val) => Val.ValidateEmail(val),
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
+      onChanged: (text) {
+        setState(() {
+          this.email = text;
+        });
+      },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: 'Email',
@@ -38,11 +63,16 @@ class _SignupPageState extends State<SignupPage> {
     );
 
     final password = TextFormField(
-      controller: _passCtrl,
+      validator: (val) => Val.ValidatePassword(val),
       keyboardType: TextInputType.text,
       obscureText: !_showPass ?? true,
       autofocus: false,
       textCapitalization: TextCapitalization.none,
+      onChanged: (text) {
+        setState(() {
+          this.password = text;
+        });
+      },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: 'Password',
@@ -71,11 +101,16 @@ class _SignupPageState extends State<SignupPage> {
     );
 
     final repassword = TextFormField(
-        controller: _repassCtrl,
+        validator: (val) => Val.ValidatePassword(val),
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.none,
         obscureText: !_rePass ?? true,
         autofocus: false,
+        onChanged: (text) {
+          setState(() {
+            this.repassword = text;
+          });
+        },
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: 'Re-Type Password',
@@ -126,7 +161,7 @@ class _SignupPageState extends State<SignupPage> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               repassword,
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              func.authButtons(context, 'SIGN UP', 'signup'),
+              func.authButtons(context, 'SIGN UP', 'signup', onSignupPressed),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -138,9 +173,11 @@ class _SignupPageState extends State<SignupPage> {
                   FlatButton(
                     child: Text(
                       'LOGIN HERE',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    onPressed: () => Navigator.of(context).pushNamed(LoginPage.tag),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(LoginPage.tag),
                   )
                 ],
               )
@@ -153,7 +190,7 @@ class _SignupPageState extends State<SignupPage> {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.white),
       home: Scaffold(
-        backgroundColor: Color(0xff800000), 
+        backgroundColor: Color(0xff800000),
         body: _buildBody,
       ),
     );
