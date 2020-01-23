@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/app/widgets/featured_card.dart';
-import 'package:skuisy_project/ui/app/widgets/featured_products.dart';
-import 'package:skuisy_project/ui/app/widgets/search.dart';
-import 'package:skuisy_project/ui/app/widgets/top_bar.dart';
+import 'package:skuisy_project/ui/screens/profile_page.dart';
+import 'package:skuisy_project/ui/widgets/featured_products.dart';
+import 'package:skuisy_project/ui/widgets/top_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,6 +24,8 @@ class _HomePageState extends State<HomePage> {
 
     final List<Widget> _children = [
       _buildBody(),
+      ProfilePage(),
+      ProfilePage(),
     ];
 
     final bottomNav = new Theme(

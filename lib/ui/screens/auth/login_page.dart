@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/src/api_service.dart';
-import 'package:skuisy_project/ui/auth/signup_page.dart';
+import 'package:skuisy_project/ui/screens/auth/signup_page.dart';
 import 'package:skuisy_project/src/global_functions.dart';
 import 'package:skuisy_project/utils/utils.dart';
 

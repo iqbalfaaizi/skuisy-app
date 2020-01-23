@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/app/widgets/search.dart';
+import 'package:skuisy_project/ui/widgets/search.dart';
 
 Widget topBar(BuildContext context) {
   return AppBar(
