@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/screens/profile_page.dart';
 import 'package:skuisy_project/ui/widgets/featured_products.dart';
 import 'package:skuisy_project/ui/widgets/top_bar.dart';
 
@@ -9,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
 
   Widget _buildBody() {
     return Column(
@@ -21,45 +19,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    final List<Widget> _children = [
-      _buildBody(),
-      ProfilePage(),
-      ProfilePage(),
-    ];
-
-    final bottomNav = new Theme(
-      data: Theme.of(context).copyWith(
-        canvasColor: Color(0xff800000),
-      ),
-      child: new BottomNavigationBar(
-        onTap: _onTabTapped,
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white38,
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            title: new Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.child_friendly),
-            title: new Text('Basket'),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
-        ],
-      ));
-
+    
     return Scaffold(
       appBar: topBar(context),
-      body: _children[_currentIndex],
-      bottomNavigationBar: bottomNav,
+      body: _buildBody(),
+      // bottomNavigationBar: bottomNav,
     );
-  }
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
   }
 }
