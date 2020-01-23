@@ -33,7 +33,7 @@ class GlobalFunctions {
       ));
   }
 
-  Widget authButtons(BuildContext context, String val, String tag, Function onSignupPressed){
+  Widget authButtons(BuildContext context, String val, String tag, Function onButtonPressed){
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       // padding: tag == 'signup-page' ? EdgeInsets.fromLTRB(10, 0, 10, 20) : EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -48,7 +48,7 @@ class GlobalFunctions {
                 side: BorderSide(color: Colors.white, width: 2.5)
           ),
           color: tag == 'signup' ? Colors.white : Color(0xff800000),
-          onPressed: onSignupPressed,
+          onPressed: onButtonPressed,
           child: Text(
             val, 
             style: TextStyle(

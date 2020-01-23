@@ -23,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
   String password = '';
   String repassword = '';
 
-  onSignupPressed() async {
+  onButtonPressed() async {
     if (_formKey.currentState.validate()) {
       if(password != repassword) {
         func.alertDialog(context, 'Re-Type Password did not match!');
@@ -162,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               repassword,
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              func.authButtons(context, 'SIGN UP', 'signup', onSignupPressed),
+              func.authButtons(context, 'SIGN UP', 'signup', onButtonPressed),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

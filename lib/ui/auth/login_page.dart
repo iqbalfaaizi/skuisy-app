@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/src/api_service.dart';
 import 'package:skuisy_project/ui/auth/signup_page.dart';
 import 'package:skuisy_project/src/global_functions.dart';
 
@@ -11,22 +12,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   GlobalFunctions func = new GlobalFunctions();
   final _formKey = GlobalKey<FormState>();
-  final _emailCtrl = TextEditingController();
-  final _passCtrl = TextEditingController();
   bool _showPass = false;
+  ApiService _apiService = new ApiService();
+  String email = '';
+  String password = '';
 
-  onLoginPressed() async {}
+  onButtonPressed() async {
+    if (_formKey.currentState.validate()) {
+      final res = await _apiService.logIn(email, password);
+      if (res.toString() == 'success') {
+        func.alertDialog(context, 'Successfully Registered');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final email = TextFormField(
-      controller: _emailCtrl,
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       style: TextStyle(color: Color(0xff800000)),
       decoration: InputDecoration(
         labelText: 'Email',
-        labelStyle: TextStyle(color: Color(0xff800000), fontFamily: 'sans-serif-light'),
+        labelStyle:
+            TextStyle(color: Color(0xff800000), fontFamily: 'sans-serif-light'),
         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xff800000), width: 2.0),
@@ -39,7 +48,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final password = TextFormField(
-      controller: _passCtrl,
       obscureText: !_showPass ?? true,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.none,
@@ -47,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
       style: TextStyle(color: Color(0xff800000)),
       decoration: InputDecoration(
           labelText: 'Password',
-          labelStyle: TextStyle(color: Color(0xff800000), fontFamily: 'sans-serif-light'),
+          labelStyle: TextStyle(
+              color: Color(0xff800000), fontFamily: 'sans-serif-light'),
           contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xff800000), width: 2.0),
@@ -91,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 password,
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                func.authButtons(context, 'LOGIN', 'login', onLoginPressed),
+                func.authButtons(context, 'LOGIN', 'login', onButtonPressed),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
