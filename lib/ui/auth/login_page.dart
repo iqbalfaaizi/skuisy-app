@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skuisy_project/src/api_service.dart';
 import 'package:skuisy_project/ui/auth/signup_page.dart';
 import 'package:skuisy_project/src/global_functions.dart';
+import 'package:skuisy_project/utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -20,8 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   onButtonPressed() async {
     if (_formKey.currentState.validate()) {
       final res = await _apiService.logIn(email, password);
+      print(res.toString());
       if (res.toString() == 'success') {
-        func.alertDialog(context, 'Successfully Registered');
+        func.alertDialog(context, 'Successfully Login');
       }
     }
   }
@@ -29,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final email = TextFormField(
+      validator: (val) => Val.ValidateEmail(val),
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       style: TextStyle(color: Color(0xff800000)),
@@ -45,14 +48,25 @@ class _LoginPageState extends State<LoginPage> {
         ),
         prefixIcon: Icon(Icons.mail, color: Color(0xff800000)),
       ),
+      onChanged: (text) {
+        setState(() {
+          this.email = text;
+        });
+      },
     );
 
     final password = TextFormField(
+      validator: (val) => Val.ValidatePassword(val),
       obscureText: !_showPass ?? true,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.none,
       autofocus: false,
       style: TextStyle(color: Color(0xff800000)),
+      onChanged: (text) {
+        setState(() {
+          this.password = text;
+        });
+      },
       decoration: InputDecoration(
           labelText: 'Password',
           labelStyle: TextStyle(

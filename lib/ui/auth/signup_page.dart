@@ -30,6 +30,7 @@ class _SignupPageState extends State<SignupPage> {
       } else {
         final res = await _apiService.signUp(email, password);
         if(res.toString() == 'success') {
+          Navigator.of(context).pushNamed(LoginPage.tag);
           func.alertDialog(context, 'Successfully Registered');
         }
       }
