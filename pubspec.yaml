@@ -48,6 +48,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/logo.png
+    - assets/images/
 
   fonts:
     - family: LemonMilk

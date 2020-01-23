@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/ui/app/home_page.dart';
 import 'package:skuisy_project/ui/auth/login_page.dart';
 import 'package:skuisy_project/ui/auth/signup_page.dart';
 import 'package:skuisy_project/ui/landing_page.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.pinkAccent
       ),
-      home: LandingPage(),
+      home: HomePage(),
       routes: routes
     );
   }
