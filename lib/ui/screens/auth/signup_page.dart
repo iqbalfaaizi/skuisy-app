@@ -10,7 +10,6 @@ GlobalFunctions func = new GlobalFunctions();
 
 class SignupPage extends StatefulWidget {
   static String tag = 'signup-page';
-
   @override
   _SignupPageState createState() => _SignupPageState();
 }

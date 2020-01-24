@@ -9,9 +9,9 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 0, bottom: 0),
+      padding: EdgeInsets.only(top: 10),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.04,
+        height: MediaQuery.of(context).size.height * 0.06,
         decoration: BoxDecoration(
           color: Colors.blueGrey[50],
           borderRadius: BorderRadius.all(
