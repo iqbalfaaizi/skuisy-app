@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
-
 import '../landing_page.dart';
+import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
 class NavigatorPage extends StatefulWidget {
   @override
@@ -17,36 +17,44 @@ class _NavigatorPageState extends State<NavigatorPage> {
     final List<Widget> _children = [
       HomePage(),
       ProfilePage(),
-      LandingPage(),
+      ProfilePage(),
+      ProfilePage(),
     ];
 
-    final bottomNav = new Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Color(0xff800000),
+    final makeBottom = new FFNavigationBar(
+      theme: FFNavigationBarTheme(
+        barBackgroundColor: Color(0xff800000),
+        selectedItemBorderColor: Colors.white,
+        selectedItemBackgroundColor: Color(0xff800000),
+        selectedItemIconColor: Colors.white,
+        selectedItemLabelColor: Colors.white,
+      ),
+      selectedIndex: _currentIndex,
+      onSelectTab: (index) => _onTabTapped(index),
+      items: [
+        FFNavigationBarItem(
+          iconData: Icons.home,
+          label: 'Home',
         ),
-        child: new BottomNavigationBar(
-          onTap: _onTabTapped,
-          currentIndex: _currentIndex,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white38,
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.child_friendly),
-              title: new Text('Basket'),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text('Profile'))
-          ],
-        ));
+        FFNavigationBarItem(
+          iconData: Icons.shopping_cart,
+          label: 'Cart',
+        ),
+        FFNavigationBarItem(
+          iconData: Icons.face,
+          label: 'Profile',
+        ),
+        FFNavigationBarItem(
+          iconData: Icons.settings,
+          label: 'Settings',
+        ),
+      ],
+    );
 
     return Scaffold(
       // appBar: topBar(context),
       body: _children[_currentIndex],
-      bottomNavigationBar: bottomNav,
+      bottomNavigationBar: makeBottom,
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/widgets/featured_products.dart';
 import 'package:skuisy_project/ui/widgets/list_product.dart';
+import 'package:skuisy_project/ui/widgets/home_actions.dart';
 import 'package:skuisy_project/ui/widgets/top_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: <Widget>[
         FeaturedProducts(),
+                HomeActions(),
         ListProduct()
       ],
     );
@@ -21,7 +23,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: topBar(context),
       body: _buildBody(),
