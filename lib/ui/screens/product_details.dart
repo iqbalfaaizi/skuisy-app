@@ -9,7 +9,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Container(
+      body: SafeArea(
+          child: Container(
         color: Colors.black.withOpacity(0.9),
         child: Column(
           children: <Widget>[
@@ -20,7 +21,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   height: 350,
                   fit: BoxFit.cover,
                 ),
-
                 Align(
                   alignment: Alignment.topCenter,
                   child: Container(
@@ -42,59 +42,51 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                         ),
                       ),
-
                       child: Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: Container()
-                      )),
+                          child: Container())),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                   Padding(
+                    Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white,), onPressed: (){
-                          Navigator.pop(context);
-                        })
-                      ),
-
-
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            })),
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.shopping_cart),
-                            ),
-                          )
-                        ),
-
                         Padding(
                             padding: const EdgeInsets.all(4),
                             child: Card(
                               elevation: 10,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(Icons.shopping_cart),
                               ),
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Card(
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(Icons.favorite_border),
                               ),
-                            )
-                        ),
-
+                            )),
                       ],
                     ),
                   ],
                 ),
-
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
@@ -118,11 +110,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                         ),
                       ),
-
                       child: Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: Container()
-                      )),
+                          child: Container())),
                 ),
                 Positioned(
                     bottom: 0,
@@ -133,158 +123,204 @@ class _ProductDetailsState extends State<ProductDetails> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text('Product Blazer', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300,fontSize: 20),),
+                            child: Text(
+                              'Product Blazer',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 20),
+                            ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text('\$35.99', textAlign: TextAlign.end,style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),),
+                            child: Text(
+                              '\$35.99',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
                     )),
-
               ],
             ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      offset: Offset(2, 5),
-                      blurRadius: 10
-                    )
-                  ]
-                ),
-                child: Column(
-                  children: <Widget>[Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Select Color: ', style: TextStyle(color: Colors.white),),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.red,
-                            ),
-                          ),),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.green,
-                              ),
-                            ),),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.orange,
-                              ),
-                            ),),
-                        ),
-
-
-
-                      ],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                  ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black,
+                          offset: Offset(2, 5),
+                          blurRadius: 10)
+                    ]),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              'Select Color: ',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.green,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.orange,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: Text('Select Size: ', style: TextStyle(color: Colors.white)),
+                            child: Text('Select Size: ',
+                                style: TextStyle(color: Colors.white)),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.8),
+                                  borderRadius: BorderRadius.circular(7)),
                               child: Padding(
                                 padding: const EdgeInsets.all(2),
-                                child: Text('S', textAlign: TextAlign.center,style: TextStyle(color: Colors.white, fontSize: 17),),
-                              ),),
+                                child: Text(
+                                  'S',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 17),
+                                ),
+                              ),
+                            ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.8),
+                                  borderRadius: BorderRadius.circular(7)),
                               child: Padding(
                                 padding: const EdgeInsets.all(2),
-                                child: Text('M', textAlign: TextAlign.center,style: TextStyle(color: Colors.white, fontSize: 17),),
-                              ),),
+                                child: Text(
+                                  'M',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 17),
+                                ),
+                              ),
+                            ),
                           ),
-
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(width: 24, height: 24, decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.8),
+                                  borderRadius: BorderRadius.circular(7)),
                               child: Padding(
                                 padding: const EdgeInsets.all(2),
-                                child: Text('L', textAlign: TextAlign.center,style: TextStyle(color: Colors.white, fontSize: 17),),
-                              ),),
+                                child: Text(
+                                  'L',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 17),
+                                ),
+                              ),
+                            ),
                           ),
-
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container( height: 24, decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
+                            child: Container(
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.8),
+                                  borderRadius: BorderRadius.circular(7)),
                               child: Padding(
                                 padding: const EdgeInsets.all(2),
-                                child: Text('XL', textAlign: TextAlign.center,style: TextStyle(color: Colors.white, fontSize: 17),),
-                              ),),
+                                child: Text(
+                                  'XL',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 17),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('Description:\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s  Lorem Ipsum has been the industry standard dummy text ever since the 1500s ', style: TextStyle(color: Colors.white)),
+                        child: Text(
+                            'Description:\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s  Lorem Ipsum has been the industry standard dummy text ever since the 1500s ',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ),
-
                     Padding(
-                      padding:
-                      const EdgeInsets.all(9),
+                      padding: const EdgeInsets.all(9),
                       child: Material(
                           borderRadius: BorderRadius.circular(15.0),
                           color: Colors.white,
@@ -302,12 +338,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                           )),
                     ),
-
                   ],
                 ),
               ),
             )
-
           ],
         ),
       )),
