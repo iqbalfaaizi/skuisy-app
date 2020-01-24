@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    child: Icon(Icons.person, size: 50,),
+                    child: Icon(Icons.accessibility_new, size: 50,),
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(

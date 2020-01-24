@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
+import 'package:skuisy_project/ui/widgets/banners.dart';
 import '../landing_page.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
@@ -16,7 +17,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       HomePage(),
-      ProfilePage(),
+      Banners(),
       ProfilePage(),
       ProfilePage(),
     ];
@@ -24,8 +25,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
     final makeBottom = new FFNavigationBar(
       theme: FFNavigationBarTheme(
         barBackgroundColor: Color(0xff800000),
-        selectedItemBorderColor: Colors.white,
-        selectedItemBackgroundColor: Color(0xff800000),
+        selectedItemBorderColor: Colors.green,
+        selectedItemBackgroundColor: Colors.green,
         selectedItemIconColor: Colors.white,
         selectedItemLabelColor: Colors.white,
       ),
