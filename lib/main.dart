@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/auth/login_page.dart';
 import 'package:skuisy_project/ui/screens/auth/signup_page.dart';
-import 'package:skuisy_project/ui/landing_page.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
 
 void main() => runApp(MyApp());

@@ -7,7 +7,6 @@ class ProfilePage extends StatelessWidget {
       body: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             IconButton(
               icon: Icon(

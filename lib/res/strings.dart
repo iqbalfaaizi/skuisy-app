@@ -1,3 +1,1 @@
-class AppStrings {
-  static String apiUrl = "https://skuisy-app.herokuapp.com/";
-}
+const base_url = "http://skuisy-app.herokuapp.com/api/v1";
