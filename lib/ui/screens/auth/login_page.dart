@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
 import 'package:skuisy_project/src/api_service.dart';
 import 'package:skuisy_project/ui/screens/auth/signup_page.dart';
 import 'package:skuisy_project/src/global_functions.dart';
+import 'package:skuisy_project/ui/screens/home_page.dart';
+import 'package:skuisy_project/ui/screens/navigator_page.dart';
 import 'package:skuisy_project/utils/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -18,14 +22,40 @@ class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
 
+  void autoLogin() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String user = prefs.getString('email');
+    print('sharedpreference $user');
+    if (user != null) {
+      setState(() {
+        email = user;
+      });
+      navBlocs.updateEmail(user);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => NavigatorPage()));
+      print('autologin success');
+    }
+  }
+
   onButtonPressed() async {
     if (_formKey.currentState.validate()) {
       final res = await _apiService.logIn(email, password);
+
       print(res.toString());
       if (res.toString() == 'success') {
+        await loginUser();
         func.alertDialog(context, 'Successfully Login');
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => NavigatorPage()));
       }
     }
+  }
+
+  Future<Null> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', email);
+    print('Store preferences email : ${prefs.getString('email')}');
+    // print('Store pref : $prefs');
   }
 
   @override
