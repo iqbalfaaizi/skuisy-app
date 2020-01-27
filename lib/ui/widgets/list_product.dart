@@ -43,37 +43,41 @@ class _ListProductState extends State<ListProduct> {
   }
 
   Widget buildAllProductList(AsyncSnapshot snapshot) {
-    return GridView.builder(
-      itemCount: snapshot.data.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        Product _product = snapshot.data[index];
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      child: GridView.builder(
+        itemCount: snapshot.data.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          Product _product = snapshot.data[index];
 
-        return GestureDetector(
-          child: Card(
-            elevation: 5.0,
-            child: Container(
-              alignment: Alignment.bottomLeft,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text(_product.title),
-                  Text(_product.description)
-                ],
+          return GestureDetector(
+            child: Card(
+              elevation: 5.0,
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(_product.title),
+                    Text(_product.description)
+                  ],
+                ),
               ),
             ),
-          ),
-          onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => ProductDetails()));
-          },
-        );
-      },
-      shrinkWrap: true,
-      padding: EdgeInsets.all(0),
-      controller: ScrollController(keepScrollOffset: true),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => ProductDetails()));
+            },
+          );
+        },
+        shrinkWrap: true,
+        padding: EdgeInsets.all(0),
+        controller: ScrollController(keepScrollOffset: true),
+      )
+
     );
   }
 }
