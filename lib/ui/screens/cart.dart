@@ -155,7 +155,7 @@ class _CartListState extends State<CartList> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: RaisedButton(
-                      child: Text('Beli'),
+                      child: Text('Checkout'),
                       autofocus: false,
                       color: Colors.green,
                       textColor: Colors.white,
