@@ -19,8 +19,8 @@ class _HomeActionsState extends State<HomeActions> {
               borderRadius: BorderRadius.circular(32),
             ),
             gradient: LinearGradient(colors: [
-              Colors.grey[350],
-              Color(0xffffffff)
+              Colors.red[100],
+              Colors.yellow[50]
             ], begin: FractionalOffset.topLeft)
           ),
           child: Column(
@@ -36,7 +36,11 @@ class _HomeActionsState extends State<HomeActions> {
                 ),
               ),
               Text(
-                'Category', 
+                tag == 'category' ? 'Category' : 
+                tag == 'travel' ? 'Travel' : 
+                tag == 'pets' ? 'Pets' : 
+                tag == 'phone' ? 'Mobile' : 
+                'Unknown', 
                 style: TextStyle(fontSize: 11),
               )
             ],

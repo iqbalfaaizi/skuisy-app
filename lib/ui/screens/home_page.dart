@@ -13,12 +13,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   Widget _buildBody() {
-    return Column(
-      children: <Widget>[
-        Banners(),
-        HomeActions(),
-        ListProduct()
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Banners(),
+          HomeActions(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          ListProduct()
+        ],
+      )
     );
   }
 

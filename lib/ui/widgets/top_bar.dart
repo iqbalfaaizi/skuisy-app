@@ -13,11 +13,11 @@ Widget topBar(BuildContext context) {
           child: Row(
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.notifications),
+                icon: Icon(Icons.star, color: Colors.white),
                 onPressed: () {},
               ),
               IconButton(
-                icon: Icon(Icons.shopping_basket),
+                icon: Icon(Icons.notifications, color: Colors.white),
                 onPressed: () {},
               )
             ],
