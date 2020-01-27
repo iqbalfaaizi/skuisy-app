@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/ui/screens/cart.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
 import 'package:skuisy_project/ui/screens/setting_page.dart';
@@ -18,7 +19,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       HomePage(),
-      Banners(),
+      CartList(),
       ProfilePage(),
       SettingPage(),
     ];

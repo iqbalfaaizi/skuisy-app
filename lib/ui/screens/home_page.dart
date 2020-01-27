@@ -13,8 +13,13 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Column(
-        children: <Widget>[Banners(), HomeActions(), ListProduct()],
-      ),
+        children: <Widget>[
+          Banners(),
+          HomeActions(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          ListProduct()
+        ],
+      )
     );
   }
 

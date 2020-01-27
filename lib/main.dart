@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
       title: 'Home Page',
-      theme: ThemeData(
-        primaryColor: Colors.pinkAccent
-      ),
       home: NavigatorPage(),
       routes: routes
     );
