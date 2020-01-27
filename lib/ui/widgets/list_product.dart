@@ -44,7 +44,7 @@ class _ListProductState extends State<ListProduct> {
 
   Widget buildAllProductList(AsyncSnapshot snapshot) {
     return GridView.builder(
-      itemCount: snapshot.data.length,
+      itemCount: 4,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),

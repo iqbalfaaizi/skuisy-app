@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
+import 'package:skuisy_project/ui/landing_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -6,10 +8,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+  final String email = navBlocs.navigationProvider.currentEmail;
+  Widget _buildNoUser() {
+    return Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.only(top: 30, left: 10, right: 10),
         child: Card(
@@ -19,18 +20,19 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Icon(Icons.accessibility_new, size: 50,),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.only(right: 20),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black12,
-                    ),
-                  )
-                ),
-                
+                    flex: 1,
+                    child: Container(
+                      child: Icon(
+                        Icons.accessibility_new,
+                        size: 50,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black12,
+                      ),
+                    )),
                 Expanded(
                   flex: 2,
                   child: Container(
@@ -41,12 +43,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LandingPage()));
+                            },
                             color: Colors.lightBlue,
-                            child: const Text(
-                              'Login/Signup',
-                              style: TextStyle(fontSize: 15,color: Colors.white)
-                            ),
+                            child: const Text('Login/Signup',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
                           ),
                         ),
                       ],
@@ -57,7 +63,56 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-      ),
+      );
+  }
+
+  Widget _buildUser() {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.only(top: 30, left: 10, right: 10),
+        child: Card(
+          child: Container(
+            height: 100,
+            padding: EdgeInsets.all(5),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Icon(
+                        Icons.accessibility_new,
+                        size: 50,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black12,
+                      ),
+                    )),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text('ada orangnya'),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print(email);
+    return Scaffold(
+      body: email == '' ? _buildNoUser() : _buildUser()
     );
   }
 }
