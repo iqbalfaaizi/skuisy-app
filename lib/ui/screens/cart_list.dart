@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:getflutter/getflutter.dart';
+import 'package:skuisy_project/data/bloc/cart_bloc.dart';
+import 'package:skuisy_project/data/model/cart_model.dart';
+import 'package:skuisy_project/data/model/product_model.dart';
 
 class CartList extends StatefulWidget {
   @override
@@ -116,7 +120,7 @@ class _CartListState extends State<CartList> {
       ),
       title: Text(
         _itemList[index]['product'],
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
       subtitle: _subtitleList(index),
     );
@@ -128,9 +132,9 @@ class _CartListState extends State<CartList> {
         Container(
           margin: EdgeInsets.symmetric(vertical: 5),
           child: Card(
-            child: Row(
-              children: <Widget>[
-                Expanded(
+              child: Row(
+            children: <Widget>[
+              Expanded(
                   flex: 2,
                   child: Container(
                     padding: EdgeInsets.all(10),
@@ -144,31 +148,29 @@ class _CartListState extends State<CartList> {
                         SizedBox(height: 5),
                         Text(
                           'Rp 1.000.326.122',
-                          style: TextStyle(color: Colors.deepOrange, fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                  )
-                ),
-                Expanded(
+                  )),
+              Expanded(
                   flex: 1,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: RaisedButton(
-                      child: Text('Checkout'),
-                      autofocus: false,
-                      color: Colors.green,
-                      textColor: Colors.white,
-                      onPressed: (){},
-                    )
-                  )
-                )
-              ],
-            )
-          ),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: GFButton(
+                        onPressed: () {},
+                        text: 'Checkout',
+                        shape: GFButtonShape.pills,
+                        color: GFColor.success,
+                      )))
+            ],
+          )),
         ),
         Expanded(
-          child: ListView.builder(
+            child: ListView.builder(
           itemCount: _itemList.length,
           itemBuilder: (BuildContext contex, int index) {
             return new SingleChildScrollView(
@@ -182,11 +184,14 @@ class _CartListState extends State<CartList> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
+    CartBloc cartBloc = CartBloc();
     return Scaffold(
       appBar: _cartAppBar,
       body: _buildBody(),
+    
     );
   }
 }

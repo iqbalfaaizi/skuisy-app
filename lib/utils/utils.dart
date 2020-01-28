@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Val {
   static String ValidateEmail(String val) {
     RegExp exp = new RegExp (
@@ -62,5 +64,13 @@ class Val {
     } else if (exp.hasMatch(val.trim()) == false) {
       return "Must be 8-15 digits and only numeric digit";
     }
+  }
+}
+
+class Prefs {
+  Future getEmail() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('email');
+    return email;
   }
 }
