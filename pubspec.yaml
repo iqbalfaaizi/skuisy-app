@@ -30,6 +30,7 @@ dependencies:
   shared_preferences: ^0.5.6
   rxdart: ^0.20.0
   getflutter: ^1.0.2
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

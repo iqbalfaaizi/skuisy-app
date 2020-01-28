@@ -24,6 +24,7 @@ class GlobalFunctions {
               color: tag == 'signup-page' ? Colors.white : Color(0xff800000),
               fontSize: 16,
               letterSpacing: 5.0,
+              fontFamily: 'sans-serif-light'
             )
           ),
         ),

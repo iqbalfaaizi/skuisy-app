@@ -32,7 +32,16 @@ class _LandingPageState extends State<LandingPage> {
           child: Center(child: logo),
         ),
         bottomSheet: Container(
-          color: Color(0xff800000),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff800000),
+                Colors.black
+              ]
+            )
+          ),
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[

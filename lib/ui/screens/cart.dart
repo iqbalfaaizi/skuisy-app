@@ -158,8 +158,8 @@ class _CartListState extends State<CartList> {
                     child: GFButton(
                       onPressed: (){},
                       text: 'Checkout',
-                      shape: GFButtonShape.pills,
-                      color: GFColor.success,
+                      shape: GFButtonShape.standard,
+                      color: Colors.deepOrange,
                     )
                   )
                 )
