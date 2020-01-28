@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:getflutter/getflutter.dart';
 
 class CartList extends StatefulWidget {
   @override
@@ -116,7 +117,7 @@ class _CartListState extends State<CartList> {
       ),
       title: Text(
         _itemList[index]['product'],
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
       subtitle: _subtitleList(index),
     );
@@ -154,12 +155,11 @@ class _CartListState extends State<CartList> {
                   flex: 1,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: RaisedButton(
-                      child: Text('Checkout'),
-                      autofocus: false,
-                      color: Colors.green,
-                      textColor: Colors.white,
+                    child: GFButton(
                       onPressed: (){},
+                      text: 'Checkout',
+                      shape: GFButtonShape.pills,
+                      color: GFColor.success,
                     )
                   )
                 )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
 import 'package:skuisy_project/ui/landing_page.dart';
+import 'package:skuisy_project/utils/utils.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -8,7 +9,23 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final String email = navBlocs.navigationProvider.currentEmail;
+  // final String email = navBlocs.navigationProvider.currentEmail;
+  Prefs _prefs = new Prefs();
+  String email;
+
+  @override
+  void initState() {
+    this._userEmail();
+    super.initState();
+  }
+  
+  void _userEmail() async {
+    final usermail = await _prefs.getEmail();
+    setState(() {
+      email = usermail;
+    });
+  }
+
   Widget _buildNoUser() {
     return Container(
         width: MediaQuery.of(context).size.width,
@@ -112,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     print(email);
     return Scaffold(
-      body: email == '' ? _buildNoUser() : _buildUser()
+      body: email == null ? _buildNoUser() : _buildUser()
     );
   }
 }

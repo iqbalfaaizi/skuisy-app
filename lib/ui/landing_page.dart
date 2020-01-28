@@ -24,9 +24,11 @@ class _LandingPageState extends State<LandingPage> {
           width: MediaQuery.of(context).size.width,
           // color: Color(0xffFF003D),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Color(0xff800000),Color(0xff800000),],
-                  begin: Alignment.topCenter)),
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg.png'),
+              fit: BoxFit.cover
+            )
+          ),
           child: Center(child: logo),
         ),
         bottomSheet: Container(

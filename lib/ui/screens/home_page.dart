@@ -12,13 +12,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Widget _buildBody() {
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Banners(),
-          HomeActions(),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          ListProduct()
-        ],
+      child: Container(
+        color: Colors.grey[100],
+        child: Column(
+          children: <Widget>[
+            Banners(),
+            HomeActions(),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Card(
+              child: ListProduct()
+            )
+          ],
+        )
       )
     );
   }
