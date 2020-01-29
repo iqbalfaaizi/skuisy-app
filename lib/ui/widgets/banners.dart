@@ -4,7 +4,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 final List<String> imgList = [
   'https://www.advertgallery.com/wp-content/uploads/2017/08/new-pantene-thicker-stronger-hair-in-14-days-ad-times-of-india-delhi-13-08-2017-800x610.jpg',
   'https://i.pinimg.com/736x/12/eb/84/12eb84f45799372737b014e8b87daeb9.jpg',
-  'https://salamadian.com/wp-content/uploads/2017/09/contoh-iklan-produk-minuman.jpg'
+  'https://salamadian.com/wp-content/uploads/2017/09/contoh-iklan-produk-minuman.jpg',
+  'https://korea.iyaa.com/article/2017/09/__icsFiles/thumbnail/2017/09/12/miwon.jpg'
 ];
 
 final Widget placeholder = Container(color: Colors.grey);

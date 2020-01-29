@@ -3,6 +3,7 @@ import 'package:skuisy_project/ui/widgets/banners.dart';
 import 'package:skuisy_project/ui/widgets/list_product.dart';
 import 'package:skuisy_project/ui/widgets/home_actions.dart';
 import 'package:skuisy_project/ui/widgets/top_bar.dart';
+import 'package:getflutter/getflutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Card(
               child: ListProduct()
-            )
+            ),
           ],
         )
       )
