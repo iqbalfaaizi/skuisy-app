@@ -4,6 +4,7 @@ import 'package:skuisy_project/ui/widgets/banners.dart';
 import 'package:skuisy_project/ui/widgets/list_product.dart';
 import 'package:skuisy_project/ui/widgets/home_actions.dart';
 import 'package:skuisy_project/ui/widgets/top_bar.dart';
+import 'package:getflutter/getflutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.grey[100],
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Banners(),
@@ -23,15 +24,6 @@ class _HomePageState extends State<HomePage> {
             Card(
               child: ListProduct()
             ),
-            FlatButton(
-                    child: Text(
-                      'More',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () =>
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=> ProductPage())),
-                  )
           ],
         )
       )
