@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
+import 'package:skuisy_project/ui/screens/product_page.dart';
 import 'package:skuisy_project/ui/widgets/banners.dart';
 import 'package:skuisy_project/ui/widgets/list_product.dart';
 import 'package:skuisy_project/ui/widgets/home_actions.dart';
@@ -22,7 +22,16 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Card(
               child: ListProduct()
-            )
+            ),
+            FlatButton(
+                    child: Text(
+                      'More',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> ProductPage())),
+                  )
           ],
         )
       )

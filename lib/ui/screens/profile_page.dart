@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
 import 'package:skuisy_project/ui/landing_page.dart';
 import 'package:skuisy_project/utils/utils.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:skuisy_project/ui/landing_page.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
 
 class SettingPage extends StatefulWidget {

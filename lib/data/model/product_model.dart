@@ -21,6 +21,7 @@ class Product {
   int productId;
   DateTime createdAt;
   int v;
+  String picture;
 
   Product({
     // this.review,
@@ -33,6 +34,7 @@ class Product {
     this.productId,
     this.createdAt,
     this.v,
+    this.picture
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -46,6 +48,7 @@ class Product {
         productId: json["id"],
         createdAt: DateTime.parse(json["created_at"]),
         v: json["__v"],
+        picture: json["picture"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,5 +62,6 @@ class Product {
         "id": productId,
         "created_at": createdAt.toIso8601String(),
         "__v": v,
+        "picture": picture
       };
 }

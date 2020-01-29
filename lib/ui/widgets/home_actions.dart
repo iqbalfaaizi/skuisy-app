@@ -23,6 +23,7 @@ class _HomeActionsState extends State<HomeActions> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 IconButton(
+                  // onPressed,
                   icon: Icon(
                     tag == 'category'
                         ? Icons.dashboard

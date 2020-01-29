@@ -159,15 +159,18 @@ class _CartListState extends State<CartList> {
               Expanded(
                   flex: 1,
                   child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: GFButton(
-                        onPressed: () {},
-                        text: 'Checkout',
-                        shape: GFButtonShape.pills,
-                        color: GFColor.success,
-                      )))
-            ],
-          )),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: GFButton(
+                      onPressed: (){},
+                      text: 'Checkout',
+                      shape: GFButtonShape.standard,
+                      color: Colors.deepOrange,
+                    )
+                  )
+                )
+              ],
+            )
+          ),
         ),
         Expanded(
             child: ListView.builder(

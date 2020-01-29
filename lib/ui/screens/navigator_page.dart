@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/screens/cart_list.dart';
 import 'package:skuisy_project/ui/screens/cart_page.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';

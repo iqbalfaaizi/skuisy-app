@@ -3,7 +3,6 @@ import 'package:skuisy_project/data/bloc/navigation_bloc.dart';
 import 'package:skuisy_project/src/api_service.dart';
 import 'package:skuisy_project/ui/screens/auth/signup_page.dart';
 import 'package:skuisy_project/src/global_functions.dart';
-import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
 import 'package:skuisy_project/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
