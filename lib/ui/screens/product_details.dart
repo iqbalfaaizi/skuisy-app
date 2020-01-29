@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
+  final int id;
+
+  ProductDetails({Key key, @required this.id}) : super(key: key);
+
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _ProductDetailsState createState() => _ProductDetailsState(id);
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  final id;
+  _ProductDetailsState(this.id);
+
   @override
   Widget build(BuildContext context) {
+    print(id);
     return Scaffold(
       body: SafeArea(
           child: Container(

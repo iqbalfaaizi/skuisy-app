@@ -27,13 +27,14 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildNoUser() {
+    final size = MediaQuery.of(context).size;
     return Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.only(top: 30, left: 10, right: 10),
+        width: size.width,
+        padding: EdgeInsets.only(top: 30, left: 5, right: 5),
         child: Card(
           child: Container(
-            height: 100,
-            padding: EdgeInsets.all(5),
+            height: size.height * 0.18,
+            padding: EdgeInsets.all(0),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -55,8 +56,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Container(
                     padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('Please Login or Signup to continue!'),
+                        Text('Please Login or Signup to continue!', textAlign: TextAlign.center,),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: RaisedButton(
@@ -127,7 +129,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(email);
     return Scaffold(
       body: email == null ? _buildNoUser() : _buildUser()
     );

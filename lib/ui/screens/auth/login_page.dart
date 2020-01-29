@@ -44,9 +44,9 @@ class _LoginPageState extends State<LoginPage> {
       print(res.toString());
       if (res.toString() == 'success') {
         await loginUser();
-        func.alertDialog(context, 'Successfully Login');
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => NavigatorPage()));
+          context, MaterialPageRoute(builder: (context) => NavigatorPage()));
+        func.alertDialog(context, 'Successfully Login');
       }
     }
   }
