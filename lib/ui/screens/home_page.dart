@@ -20,7 +20,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Banners(),
-            HomeActions(),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.17,
+              child: HomeActions()
+            ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Card(
               child: ListProduct(tag: tag)

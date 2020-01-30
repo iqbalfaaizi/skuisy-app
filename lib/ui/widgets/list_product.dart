@@ -121,7 +121,7 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
     ),
     itemBuilder: (BuildContext context, int index) {
       Product _product = snapshot.data[index];
-      String amount = "${moneyFormat.format(_product.price)},-";
+      String price = "${moneyFormat.format(_product.price)},-";
       return GestureDetector(
         child: Card(
           shape: RoundedRectangleBorder(
@@ -170,7 +170,7 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          'Rp. ${amount}',
+                          'Rp ${price}',
                           style: TextStyle(color: Colors.deepOrange, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 5),
@@ -199,7 +199,19 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
         ),
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (_) => ProductDetails(id: _product.productId)));
+            context, 
+            MaterialPageRoute(
+              builder: (_) => ProductDetails(
+                id: _product.productId,
+                title: _product.title, 
+                description: _product.description,
+                price: _product.price,
+                stock: _product.stock,
+                seller: _product.seller,
+                picture: _product.picture
+              )
+            )
+          );
         },
       );
     },
