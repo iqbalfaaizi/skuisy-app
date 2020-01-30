@@ -1,10 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/alert/gf_alert.dart';
 import 'package:intl/intl.dart';
 import 'package:skuisy_project/data/bloc/cart_bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:skuisy_project/data/model/cart_model.dart';
+import 'package:skuisy_project/ui/landing_page.dart';
+import 'package:skuisy_project/utils/utils.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -12,8 +13,24 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int _total = 0;
+  // int _total = 0;
+  Prefs _prefs = new Prefs();
+  String email;
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
+  bool showalert = false;
+
+  @override
+  void initState() {
+    this._userEmail();
+    super.initState();
+  }
+  
+  void _userEmail() async {
+    final usermail = await _prefs.getEmail();
+    setState(() {
+      email = usermail;
+    });
+  }
 
   final _cartAppBar = AppBar(
     title: Text('Cart List', style: TextStyle(color: Colors.white)),
@@ -30,9 +47,10 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(email);
      return Scaffold(
       appBar: _cartAppBar,
-      body: _buildBody(),
+      body: email == null ? _buildNoUser() : _buildBody(),
     );
   }
 
@@ -203,12 +221,102 @@ class _CartPageState extends State<CartPage> {
             ),
             IconButton(
               icon: Icon(Icons.delete_outline, size: 26, color: Colors.red,),
-              onPressed: (){},
+              onPressed: (){
+                _alertDialog();
+                setState(() {
+                  showalert = true;
+                });
+              },
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _alertDialog() {
+    return GFFloatingWidget(
+      child: GFAlert(
+        title: 'Welcome !',
+        content: 'Get Flutter is one of the largest Flutter open-source UI library for mobile or web apps with  1000+ pre-built reusable widgets.',
+        bottombar: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            GFButton(
+              onPressed: (){
+                setState(() {
+                  showalert = false;
+                });
+              },
+              shape: GFButtonShape.pills,
+              icon: Icon(Icons.keyboard_arrow_right, color: GFColors.getGFColor(GFColor.white),),
+              position: GFPosition.end,
+              text: 'Learn More',
+            )
+          ],
+        ),
+      ), //row
+      body:Text('body or any kind of widget here..')
+    );
+  }
+
+  Widget _buildNoUser() {
+    final size = MediaQuery.of(context).size;
+    return Container(
+        width: size.width,
+        padding: EdgeInsets.only(top: 30, left: 5, right: 5),
+        child: Card(
+          child: Container(
+            height: size.height * 0.18,
+            padding: EdgeInsets.all(0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Icon(
+                        Icons.accessibility_new,
+                        size: 50,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black12,
+                      ),
+                    )),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text('Please Login or Signup to continue!', textAlign: TextAlign.center,),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: RaisedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LandingPage()));
+                            },
+                            color: Colors.lightBlue,
+                            child: const Text('Login/Signup',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
   }
 
 }

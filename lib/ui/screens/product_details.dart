@@ -258,7 +258,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             SizedBox(height: 10),
             Text(
-              'Rp ${productPrice}',
+              'Rp $productPrice',
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -356,10 +356,13 @@ class _ProductDetailsState extends State<ProductDetails> {
               flex: 1,
               child: InkWell(
                   onTap: () {
-                    setState(() {
-                      _total = _total - 1;
-                      _qtyCtrl.text = _total.toString();
-                    });
+                    if(_total != 0) {
+                      setState(() {
+                        _total = _total - 1;
+                        _qtyCtrl.text = _total.toString();
+                      });
+                    }
+                    return _total;
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5),
@@ -389,8 +392,10 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: InkWell(
                   onTap: () {
                     setState(() {
-                      _total = _total + 1;
-                      _qtyCtrl.text = _total.toString();
+                      if(_total < stock) {
+                        _total = _total + 1;
+                        _qtyCtrl.text = _total.toString();
+                      }
                     });
                   },
                   child: Container(
