@@ -28,11 +28,11 @@ class _NavigatorPageState extends State<NavigatorPage> {
 
     final makeBottom = new FFNavigationBar(
       theme: FFNavigationBarTheme(
-        barBackgroundColor: Color(0xff800000),
-        selectedItemBorderColor: Colors.green,
-        selectedItemBackgroundColor: Colors.green,
+        barBackgroundColor: Colors.white,
+        selectedItemBorderColor: Colors.transparent,
+        selectedItemBackgroundColor: Color(0xff800000),
         selectedItemIconColor: Colors.white,
-        selectedItemLabelColor: Colors.white,
+        selectedItemLabelColor: Color(0xff800000),
       ),
       selectedIndex: _currentIndex,
       onSelectTab: (index) => _onTabTapped(index),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
-  'https://i.ytimg.com/vi/0yv6agwUI1A/maxresdefault.jpg',
   'https://i.pinimg.com/736x/12/eb/84/12eb84f45799372737b014e8b87daeb9.jpg',
   'https://salamadian.com/wp-content/uploads/2017/09/contoh-iklan-produk-minuman.jpg',
   'https://korea.iyaa.com/article/2017/09/__icsFiles/thumbnail/2017/09/12/miwon.jpg'
@@ -66,11 +65,16 @@ class Banners extends StatelessWidget {
             margin: EdgeInsets.all(5.0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              child: Image.network(
-                url,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
+              child: Stack(
+                children: <Widget>[
+                  Center(child: CircularProgressIndicator()),
+                  Image.network(
+                    url,
+                    fit: BoxFit.cover,
+                    width: 1000.0,
+                  ),
+                ],
+              )
             ),
           );
         },

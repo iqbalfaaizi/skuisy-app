@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 
 class HomeActions extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class HomeActions extends StatefulWidget {
 class _HomeActionsState extends State<HomeActions> {
   Widget _buildAction(String tag) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         _buildActionIcons(tag),
         SizedBox(height: 5),
@@ -20,7 +22,10 @@ class _HomeActionsState extends State<HomeActions> {
             tag == 'category' ? 'Category'
             : tag == 'travel' ? 'Travel'
             : tag == 'pets' ? 'Pets'
-            : tag == 'phone' ? 'Mobile' : 'Unknown',
+            : tag == 'phone' ? 'Mobile'
+            : tag == 'drugs' ? 'Drugs' 
+            : tag == 'finance' ? 'Finance'
+            : 'Unknown',
             style: TextStyle(fontSize: 11),
           )
         )
@@ -45,16 +50,21 @@ class _HomeActionsState extends State<HomeActions> {
           offset: Offset(3, 3),
         )]
       ),
-      child: IconButton(
-        onPressed: (){},
-        icon: Icon(
-          tag == 'category' ? Icons.dashboard
-          : tag == 'travel' ? Icons.flight
-          : tag == 'pets' ? Icons.pets
-          : tag == 'phone' ? Icons.phone_android
-          : Icons.ac_unit,
-          size: 25,
-          color: Color(0xff800000),
+      child: Container(
+        width: 50,
+        height: 50,
+        padding: EdgeInsets.all(3),
+        child: Image(
+          image: AssetImage(
+            tag == 'category' ? 'assets/images/icons/category.png' :
+            tag == 'travel' ? 'assets/images/icons/plane.png' :
+            tag == 'pets' ? 'assets/images/icons/paw.png' :
+            tag == 'phone' ? 'assets/images/icons/internet.png' :
+            tag == 'drugs' ? 'assets/images/icons/drug.png' :
+            tag == 'finance' ? 'assets/images/icons/money.png' :
+            'assets/images/icons/plane.png'
+          ),
+          fit: BoxFit.contain,
         ),
       ),
     );
@@ -64,9 +74,15 @@ class _HomeActionsState extends State<HomeActions> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.symmetric(vertical: 10),
-      color: Colors.white,
-      height: MediaQuery.of(context).size.height * 0.11,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [BoxShadow(
+          color: Colors.grey[200],
+          spreadRadius: 3,
+          blurRadius: 5,
+          offset: Offset(0,3)
+        )]
+      ),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -74,8 +90,8 @@ class _HomeActionsState extends State<HomeActions> {
           _buildAction('travel'),
           _buildAction('pets'),
           _buildAction('phone'),
-          _buildAction('phone'),
-          _buildAction('phone'),
+          _buildAction('drugs'),
+          _buildAction('finance'),
         ],
       ),
     );

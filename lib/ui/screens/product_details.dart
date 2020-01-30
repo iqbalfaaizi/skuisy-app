@@ -85,7 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   child: GFButton(
                     onPressed: stock == 0 ? null : () {
-
+                      print('Add to cart');
                     },
                     text: 'Add to Cart',
                     color: Colors.deepOrange,
@@ -137,99 +137,102 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   Widget _buildPicture() {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        stock != 0 ? Container(
-          width: size.width,
-          height: size.height * 0.5,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: NetworkImage(picture),
-            ),
-          ),
-        ) :
-        GFImageOverlay(
-          width: size.width,
-          height: size.height * 0.5,
-          boxFit: BoxFit.fill,
-          image: NetworkImage(picture),
-          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.darken),
-          child: Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20)
-              ),
-              child: Text('Out of Stock', style: TextStyle(color: Color(0xff800000), fontSize: 28)),
-            )
-          )
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            height: 100,
+    return InkWell(
+      onTap: (){print('hahsahd');},
+      child: Stack(
+        children: <Widget>[
+          stock != 0 ? Container(
+            width: size.width,
+            height: size.height * 0.5,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.black.withOpacity(0.7),
-                  Colors.black.withOpacity(0.5),
-                  Colors.black.withOpacity(0.07),
-                  Colors.black.withOpacity(0.05),
-                  Colors.black.withOpacity(0.025),
-                ]
-              )
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(picture),
+              ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Container()),
-          ), 
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
+          ) :
+          GFImageOverlay(
+            width: size.width,
+            height: size.height * 0.5,
+            boxFit: BoxFit.fill,
+            image: NetworkImage(picture),
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.darken),
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(20)
                 ),
-                onPressed: () { Navigator.of(context).pop(); }
+                child: Text('Out of Stock', style: TextStyle(color: Color(0xff800000), fontSize: 28)),
               )
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.shopping_cart),
-                      ),
-                    )),
-                Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.favorite_border),
-                      ),
-                    )),
-              ],
-            ),
-          ],
-        ),
-      ],
+            )
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.7),
+                    Colors.black.withOpacity(0.5),
+                    Colors.black.withOpacity(0.07),
+                    Colors.black.withOpacity(0.05),
+                    Colors.black.withOpacity(0.025),
+                  ]
+                )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Container()),
+            ), 
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                  onPressed: () { Navigator.of(context).pop(); }
+                )
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.shopping_cart),
+                        ),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.favorite_border),
+                        ),
+                      )),
+                ],
+              ),
+            ],
+          ),
+        ],
+      )
     );
   }
 

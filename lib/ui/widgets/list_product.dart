@@ -137,21 +137,26 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
                   flex: 2,
                   child: ClipRRect(
                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                    child: GFImageOverlay(
-                      height: 200,
-                      width: 300,
-                      colorFilter: _product.stock == 0 ? new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken) : null,
-                      image: NetworkImage(_product.picture),
-                      child: _product.stock == 0 ? Center(
-                        child: Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.6),
-                            borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Text('Out of Stock', style: TextStyle(color: Colors.red)),
+                    child: Stack(
+                      children: <Widget>[
+                        Center(child: CircularProgressIndicator()),
+                        GFImageOverlay(
+                          height: 200,
+                          width: 300,
+                          colorFilter: _product.stock == 0 ? new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken) : null,
+                          image: NetworkImage(_product.picture),
+                          child: _product.stock == 0 ? Center(
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.6),
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Text('Out of Stock', style: TextStyle(color: Colors.red)),
+                            )
+                          ) : null,
                         )
-                      ) : null,
+                      ],
                     )
                   )
                 ),
