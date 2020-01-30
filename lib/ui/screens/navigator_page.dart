@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/screens/cart.dart';
+import 'package:skuisy_project/ui/screens/cart_page.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
 import 'package:skuisy_project/ui/screens/search_page.dart';
 import 'package:skuisy_project/ui/screens/setting_page.dart';
-import 'package:skuisy_project/ui/widgets/banners.dart';
-import '../landing_page.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -20,7 +18,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       HomePage(),
-      CartList(),
+      CartPage(),
       SearchPage(),
       ProfilePage(),
       SettingPage(),

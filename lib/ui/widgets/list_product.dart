@@ -4,6 +4,7 @@ import 'package:skuisy_project/data/model/product_model.dart';
 import 'package:skuisy_project/ui/screens/product_details.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:intl/intl.dart';
+import 'package:skuisy_project/ui/screens/product_page.dart';
 
 class ListProduct extends StatefulWidget {
   final String tag;
@@ -45,9 +46,7 @@ class _ListProductState extends State<ListProduct> {
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }
-        return Card(
-          child: Center(child: CircularProgressIndicator())
-        );
+        return Card(child: Center(child: CircularProgressIndicator()));
       },
     );
   }
@@ -56,49 +55,50 @@ class _ListProductState extends State<ListProduct> {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
-          
           children: <Widget>[
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      'Our Products',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: GestureDetector(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
                       child: Text(
-                        'Browse',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 16, color: Colors.green),
+                        'Our Products',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
-                      onTap: (){print('jojo');},
-                    )
-                    
-                  ),
-                ],
-              )
-            ),
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: GestureDetector(
+                          child: Text(
+                            'Browse',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 16, color: Colors.green),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => ProductPage()));
+                          },
+                        )),
+                  ],
+                )),
             SizedBox(height: 10),
             _gridBuilder(snapshot, context, tag),
             SizedBox(height: 10),
             Container(
-              child: GFButton(
-                onPressed: (){},
-                elevation: 8.0,
-                text: 'Show more products',
-                shape: GFButtonShape.pills,
-                color: Colors.green,
-                size: GFSize.large,
-              )
-            ),
+                child: GFButton(
+              onPressed: () {},
+              elevation: 8.0,
+              text: 'Show more products',
+              shape: GFButtonShape.pills,
+              color: Colors.green,
+              size: GFSize.large,
+            )),
             SizedBox(height: 10),
           ],
         ));
@@ -124,9 +124,8 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
       String price = "${moneyFormat.format(_product.price)},-";
       return GestureDetector(
         child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 5,
           child: Container(
             child: Column(
@@ -161,62 +160,72 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
                   )
                 ),
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          _product.title.length < 15 ? 
-                          _product.title : _product.title.substring(0, 15) +'...',
-                          style: TextStyle(fontSize: 16),
-                          textAlign: TextAlign.left,
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Rp ${price}',
-                          style: TextStyle(color: Colors.deepOrange, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 5),
-                        Row(
+                    flex: 1,
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Image(
-                              width: 18,
-                              height: 18,
-                              image: AssetImage('assets/images/online-store.png'),
-                            ),
-                            SizedBox(width: 5),
                             Text(
-                              _product.seller,
-                              style: TextStyle(color: Colors.black54),
+                              _product.title.length < 15
+                                  ? _product.title
+                                  : _product.title.substring(0, 15) + '...',
+                              style: TextStyle(fontSize: 16),
+                              textAlign: TextAlign.left,
                             ),
-                          ],
-                        )
-                      ],
+                            SizedBox(height: 5),
+                            Text(
+                              'Rp ${price}',
+                              style: TextStyle(
+                                  color: Colors.deepOrange,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              children: <Widget>[
+                                Image(
+                                  width: 18,
+                                  height: 18,
+                                  image: AssetImage(
+                                      'assets/images/online-store.png'),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  _product.seller,
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            )
+                          ]),
+                    ) // Text(_product.description)
                     )
-                  )
-                ),
-                // Text(_product.description)
               ],
             ),
           ),
         ),
         onTap: () {
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => ProductDetails(),
+          //       // Pass the arguments as part of the RouteSettings. The
+          //       // DetailScreen reads the arguments from these settings.
+          //       settings: RouteSettings(
+          //         arguments: _product,
+          //       ),
+          //     ),
+          //   );
           Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (_) => ProductDetails(
-                id: _product.productId,
-                title: _product.title, 
-                description: _product.description,
-                price: _product.price,
-                stock: _product.stock,
-                seller: _product.seller,
-                picture: _product.picture
-              )
-            )
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (_) => ProductDetails(
+                      id: _product.productId,
+                      title: _product.title,
+                      description: _product.description,
+                      price: _product.price,
+                      stock: _product.stock,
+                      seller: _product.seller,
+                      picture: _product.picture)));
         },
       );
     },
