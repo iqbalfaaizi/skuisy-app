@@ -32,11 +32,26 @@ class _ProductDetailsState extends State<ProductDetails> {
   final id, title, description, price, stock, seller, picture;
   _ProductDetailsState(this.id, this.title, this.description, this.price, this.stock, this.seller, this.picture);
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
+  TextEditingController _qtyCtrl = TextEditingController();
+  String _qty = '';
+  int _total = 0;
+
+  @override
+  void initState() {
+    _qtyCtrl = new TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _qtyCtrl?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Color(0xff800000),
+      systemNavigationBarColor: Colors.black,
       statusBarColor: Color(0xff800000)
     ));
     return Scaffold(
@@ -69,7 +84,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                   height: size.height * 0.06,
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   child: GFButton(
-                    onPressed: (){},
+                    onPressed: stock == 0 ? null : () {
+
+                    },
                     text: 'Add to Cart',
                     color: Colors.deepOrange,
                     type: GFButtonType.outline,
@@ -82,8 +99,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                   height: size.height * 0.06,
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   child: GFButton(
-                    onPressed: (){},
-                    text: 'Buy Now',
+                    onPressed: stock == 0 ? null : () {
+                      
+                    },
+                    child: Text('Buy Now'),
                     color: Colors.deepOrange,
                     type: GFButtonType.solid,
                   )
@@ -107,6 +126,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               _buildTitle(),
               _buildRows(),
               _buildQuantity(),
+              _buildDesc(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.08)
             ],
           ),
@@ -258,16 +278,16 @@ class _ProductDetailsState extends State<ProductDetails> {
       color: Colors.white,
       child: Row(
         children: <Widget>[
-          _rowDetails('Rating'),
-          _rowDetails('Rating'),
-          _rowDetails('Rating'),
-          _rowDetails('Rating'),
+          _rowDetails('Rating', '5'),
+          _rowDetails('Stock', stock.toString()),
+          _rowDetails('Condition', 'New'),
+          _rowDetails('Sold', '999'),
         ],
       ),
     );
   }
   
-  Widget _rowDetails(String val) {
+  Widget _rowDetails(String title, String val) {
     return Expanded(
       flex: 1,
       child: Container(
@@ -280,9 +300,16 @@ class _ProductDetailsState extends State<ProductDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(val),
+            Text(title),
             SizedBox(height: 10),
-            Icon(Icons.star_border, color: Colors.deepOrange,)
+            title == 'Rating' ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.star_border, color: Colors.deepOrange),
+                Text(val, style: TextStyle(color: Colors.deepOrange))
+              ]
+            ) :
+            Text(val, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
           ],
         ),
       )
@@ -293,15 +320,22 @@ class _ProductDetailsState extends State<ProductDetails> {
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.1,
-      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       margin: EdgeInsets.only(top: 1),
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [BoxShadow(
+          color: Colors.grey.withOpacity(0.1),
+          spreadRadius: 3,
+          blurRadius: 3,
+          offset: Offset(0, 3),
+        )]
+      ),
       child: Row(
         children: <Widget>[
           Expanded(
             flex: 1,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.only(left: 20),
               child: Text('Quantity'),
             )
           ),
@@ -317,20 +351,26 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget _quantityCounter() {
     return Container(
       alignment: Alignment.center,
+      padding: EdgeInsets.only(right: 20),
       child: Row(
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey[200]
-              ),
-              child: IconButton(
-                onPressed: (){},
-                icon: Icon(Icons.navigate_before),
-              ),
+            child: InkWell(
+              onTap: (){
+                setState(() {
+                  _total = _total-1;
+                  _qtyCtrl.text = _total.toString();
+                });
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey[200]
+                ),
+                child: Icon(Icons.remove),
+              )
             )
           ),
           Expanded(
@@ -343,25 +383,98 @@ class _ProductDetailsState extends State<ProductDetails> {
                 decoration: InputDecoration(
                   hintText: '0',
                 ),
+                textAlign: TextAlign.center,
+                controller: _qtyCtrl,
+                onChanged: (v)=>setState((){_qty=v;}),
               ),
             )
           ),
           Expanded(
             flex: 1,
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey[200]
-              ),
-              child: IconButton(
-                onPressed: (){},
-                icon: Icon(Icons.navigate_next),
-              ),
+            child: InkWell(
+              onTap: (){
+                setState(() {
+                  _total = _total+1;
+                  _qtyCtrl.text = _total.toString();
+                });
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey[200]
+                ),
+                child: Icon(Icons.add),
+              )
             )
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDesc() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [BoxShadow(
+          color: Colors.grey.withOpacity(0.1),
+          spreadRadius: 3,
+          blurRadius: 3,
+          offset: Offset(0, 3),
+        )]
+      ),
+      alignment: Alignment.topLeft,
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.only(top: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Product Information',
+            style: TextStyle( fontWeight: FontWeight.bold ),
+          ),
+          SizedBox(height: 10),
+          Column(
+            children: <Widget>[
+              _productInfo('Category', ': Kids Apparel'),
+              SizedBox(height: 5),
+              _productInfo('Weight', ': 1 Kg(s)'),
+            ],
+          ),
+          Container(
+            height: 20, 
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.black, width: 0.1))
+            )
+          ),
+          SizedBox(height: 20),
+          Text(
+            'Description',
+            style: TextStyle( fontWeight: FontWeight.bold ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            description
+          ),
+          SizedBox(height: 20),
+        ],
+      )
+    );
+  }
+
+  Widget _productInfo(String title, String val) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: Text(title, style: TextStyle(fontSize: 13)),
+        ),
+        Expanded(
+          flex: 1,
+          child: Text(val, style: TextStyle(fontSize: 13)),
+        ),
+      ],
     );
   }
 
