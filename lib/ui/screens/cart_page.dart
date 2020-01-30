@@ -47,8 +47,7 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(email);
-     return Scaffold(
+    return Scaffold(
       appBar: _cartAppBar,
       body: email == null ? _buildNoUser() : _buildBody(),
     );

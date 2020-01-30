@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:skuisy_project/ui/screens/product_page.dart';
 import 'package:skuisy_project/ui/widgets/banners.dart';
 import 'package:skuisy_project/ui/widgets/list_product.dart';
 import 'package:skuisy_project/ui/widgets/home_actions.dart';
 import 'package:skuisy_project/ui/widgets/top_bar.dart';
-import 'package:getflutter/getflutter.dart';
 
 class HomePage extends StatefulWidget {
   @override

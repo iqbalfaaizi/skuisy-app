@@ -91,14 +91,20 @@ class _ListProductState extends State<ListProduct> {
             _gridBuilder(snapshot, context, tag),
             SizedBox(height: 10),
             Container(
-                child: GFButton(
-              onPressed: () {},
-              elevation: 8.0,
-              text: 'Show more products',
-              shape: GFButtonShape.pills,
-              color: Colors.green,
-              size: GFSize.large,
-            )),
+              child: GFButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => ProductPage()));
+                },
+                elevation: 8.0,
+                text: 'Show more products',
+                shape: GFButtonShape.pills,
+                color: Colors.green,
+                size: GFSize.large,
+              )
+            ),
             SizedBox(height: 10),
           ],
         ));
