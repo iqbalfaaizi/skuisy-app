@@ -5,16 +5,23 @@ import 'package:skuisy_project/data/model/cart_model.dart';
 import 'package:skuisy_project/res/strings.dart';
 import 'package:skuisy_project/utils/utils.dart';
 
-class CartApiProvider{
+class CartApiProvider {
   Client client = Client();
   Prefs _prefs = new Prefs();
 
   Future fetchCart() async {
     final email = await _prefs.getEmail();
-    http.Response response =  await http.get("$base_url/getcart/$email");
+    http.Response response = await http.get("$base_url/getcart/$email");
     await Future.delayed(Duration(milliseconds: 500));
     String content = response.body;
     final cart = cartFromJson(content);
     return cart;
+  }
+
+  Future addCart(title, description,stock, price, seller) async {
+    print(title);
+    final email = await _prefs.getEmail();
+    await client.put("$base_url/addcart/$email",
+        body: {"title": title, "description": description, "stock": stock, "price": price, "seller": seller});
   }
 }

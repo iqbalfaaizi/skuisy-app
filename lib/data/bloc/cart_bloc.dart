@@ -9,6 +9,10 @@ class CartBloc {
   Stream <List<Cart>> get cartList async* {
     yield await _repository.fetchCart();
   }
+
+  addCartUser(title, description, stock, price, seller){
+    _repository.addCart(title, description, stock, price, seller);
+  }
 }
 
 final cartBloc = CartBloc();
