@@ -34,39 +34,42 @@ class _HomeActionsState extends State<HomeActions> {
   }
 
   Widget _buildActionIcons(String tag) {
-    return Container(
-      width: 50,
-      padding: EdgeInsets.symmetric(horizontal: 5),
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey, width: 0.5),
-        boxShadow: [BoxShadow(
-          color: Colors.grey.withOpacity(0.1),
-          spreadRadius: 3,
-          blurRadius: 3,
-          offset: Offset(3, 3),
-        )]
-      ),
+    return InkWell(
+      onTap: (){},
       child: Container(
         width: 50,
-        height: 50,
-        padding: EdgeInsets.all(3),
-        child: Image(
-          image: AssetImage(
-            tag == 'category' ? 'assets/images/icons/category.png' :
-            tag == 'travel' ? 'assets/images/icons/plane.png' :
-            tag == 'pets' ? 'assets/images/icons/paw.png' :
-            tag == 'phone' ? 'assets/images/icons/internet.png' :
-            tag == 'drugs' ? 'assets/images/icons/drug.png' :
-            tag == 'finance' ? 'assets/images/icons/money.png' :
-            'assets/images/icons/plane.png'
-          ),
-          fit: BoxFit.contain,
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey, width: 0.5),
+          boxShadow: [BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 3,
+            blurRadius: 3,
+            offset: Offset(3, 3),
+          )]
         ),
-      ),
+        child: Container(
+          width: 50,
+          height: 50,
+          padding: EdgeInsets.all(3),
+          child: Image(
+            image: AssetImage(
+              tag == 'category' ? 'assets/images/icons/category.png' :
+              tag == 'travel' ? 'assets/images/icons/plane.png' :
+              tag == 'pets' ? 'assets/images/icons/paw.png' :
+              tag == 'phone' ? 'assets/images/icons/internet.png' :
+              tag == 'drugs' ? 'assets/images/icons/drug.png' :
+              tag == 'finance' ? 'assets/images/icons/money.png' :
+              'assets/images/icons/plane.png'
+            ),
+            fit: BoxFit.contain,
+          ),
+        ),
+      )
     );
   }
 

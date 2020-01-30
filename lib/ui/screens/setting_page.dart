@@ -39,16 +39,16 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   Widget _testToast() {
-    return Opacity(
-      opacity: 0.8,
-      child:GFToast(
-        text: 'Successfully logged out',
-        type: GFToastType.rounded,
-        autoDismiss: true,
+    return Container(
+      child: Opacity(
+        opacity: 0.8,
+        child:GFToast(
+          text: 'Successfully logged out',
+          type: GFToastType.rounded,
+          autoDismiss: true,
+        )
       )
     );
-    
-    
   }
 
   Widget _onPressedLogout() {
@@ -111,7 +111,6 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(email);
     return Scaffold(
       body: _logout ? _onPressedLogout() : _buildBody(),
       bottomSheet: _logout ? ListView(

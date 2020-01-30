@@ -11,7 +11,9 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          child: Text('aaaa'),
+          child: Image(
+            image: AssetImage('assets/images/coming_soon.jpg'),
+          ),
         ),
       ),
     );
