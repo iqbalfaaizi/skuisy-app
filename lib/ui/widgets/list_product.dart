@@ -7,11 +7,17 @@ import 'package:intl/intl.dart';
 import 'package:skuisy_project/ui/screens/product_page.dart';
 
 class ListProduct extends StatefulWidget {
+  final String tag;
+  ListProduct({this.tag});
+
   @override
-  _ListProductState createState() => _ListProductState();
+  _ListProductState createState() => _ListProductState(tag);
 }
 
 class _ListProductState extends State<ListProduct> {
+  _ListProductState(this.tag);
+  final String tag;
+
   @override
   Widget build(BuildContext context) {
     ProductBloc productBloc = ProductBloc();
@@ -82,7 +88,7 @@ class _ListProductState extends State<ListProduct> {
                   ],
                 )),
             SizedBox(height: 10),
-            _gridBuilder(snapshot, context),
+            _gridBuilder(snapshot, context, tag),
             SizedBox(height: 10),
             Container(
                 child: GFButton(
@@ -99,14 +105,14 @@ class _ListProductState extends State<ListProduct> {
   }
 }
 
-Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context) {
+Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
   var size = MediaQuery.of(_context).size;
   final double itemHeight = (size.height - kToolbarHeight - 24) / 2.3;
   final double itemWidth = size.width / 2;
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
 
   return GridView.builder(
-    itemCount: snapshot.data.length,
+    itemCount: tag == 'home' ? 6 : snapshot.data.length,
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       crossAxisSpacing: 8,
@@ -115,7 +121,7 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context) {
     ),
     itemBuilder: (BuildContext context, int index) {
       Product _product = snapshot.data[index];
-      String amount = "${moneyFormat.format(_product.price)},-";
+      String price = "${moneyFormat.format(_product.price)},-";
       return GestureDetector(
         child: Card(
           shape:
@@ -156,20 +162,20 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context) {
                 Expanded(
                     flex: 1,
                     child: Container(
-                        padding: EdgeInsets.all(5),
-                        child: Column(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              _product.title.length < 16
+                              _product.title.length < 15
                                   ? _product.title
-                                  : _product.title.substring(0, 17) + '...',
+                                  : _product.title.substring(0, 15) + '...',
                               style: TextStyle(fontSize: 16),
                               textAlign: TextAlign.left,
                             ),
                             SizedBox(height: 5),
                             Text(
-                              'Rp. ${amount}',
+                              'Rp ${price}',
                               style: TextStyle(
                                   color: Colors.deepOrange,
                                   fontWeight: FontWeight.bold),
@@ -190,16 +196,25 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context) {
                                 ),
                               ],
                             )
-                          ],
-                        ))),
-                // Text(_product.description)
+                          ]),
+                    ) // Text(_product.description)
+                    )
               ],
             ),
           ),
         ),
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (_) => ProductDetails()));
+              context,
+              MaterialPageRoute(
+                  builder: (_) => ProductDetails(
+                      id: _product.productId,
+                      title: _product.title,
+                      description: _product.description,
+                      price: _product.price,
+                      stock: _product.stock,
+                      seller: _product.seller,
+                      picture: _product.picture)));
         },
       );
     },

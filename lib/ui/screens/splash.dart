@@ -101,7 +101,7 @@ class _AnimatedLiquidLinearProgressIndicatorState
     return Center(
       child: Container(
         width: double.infinity,
-        height: 50.0,
+        height: MediaQuery.of(context).size.height * 0.05,
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: LiquidLinearProgressIndicator(
           value: _animationController.value,

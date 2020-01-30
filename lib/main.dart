@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/screens/auth/login_page.dart';
 import 'package:skuisy_project/ui/screens/auth/signup_page.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
+import 'package:skuisy_project/ui/screens/product_details.dart';
 import 'package:skuisy_project/ui/screens/splash.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +10,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     LoginPage.tag: (context) => LoginPage(),
-    SignupPage.tag: (context) => SignupPage()
+    SignupPage.tag: (context) => SignupPage(),
+    ProductDetails.tag: (context) => ProductDetails(id: null,)
   };
 
   @override

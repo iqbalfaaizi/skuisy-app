@@ -7,48 +7,57 @@ class HomeActions extends StatefulWidget {
 
 class _HomeActionsState extends State<HomeActions> {
   Widget _buildAction(String tag) {
+    return Column(
+      children: <Widget>[
+        _buildActionIcons(tag),
+        SizedBox(height: 5),
+        Container(
+          width: 55,
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          alignment: Alignment.topCenter,
+          child: Text(
+            tag == 'category' ? 'Category'
+            : tag == 'travel' ? 'Travel'
+            : tag == 'pets' ? 'Pets'
+            : tag == 'phone' ? 'Mobile' : 'Unknown',
+            style: TextStyle(fontSize: 11),
+          )
+        )
+      ],
+    );
+  }
+
+  Widget _buildActionIcons(String tag) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.22,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        color: Colors.transparent,
-        child: Container(
-            decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                gradient: LinearGradient(
-                    colors: [Colors.red[100], Colors.yellow[50]],
-                    begin: FractionalOffset.topLeft)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  // onPressed,
-                  icon: Icon(
-                    tag == 'category'
-                        ? Icons.dashboard
-                        : tag == 'travel'
-                            ? Icons.flight
-                            : tag == 'pets'
-                                ? Icons.pets
-                                : tag == 'phone'
-                                    ? Icons.phone_android
-                                    : Icons.ac_unit,
-                    size: 25,
-                  ),
-                ),
-                Text(
-                  tag == 'category'
-                      ? 'Category'
-                      : tag == 'travel'
-                          ? 'Travel'
-                          : tag == 'pets'
-                              ? 'Pets'
-                              : tag == 'phone' ? 'Mobile' : 'Unknown',
-                  style: TextStyle(fontSize: 10),
-                )
-              ],
-            )));
+      width: 50,
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey, width: 0.5),
+        boxShadow: [BoxShadow(
+          color: Colors.grey.withOpacity(0.1),
+          spreadRadius: 3,
+          blurRadius: 3,
+          offset: Offset(3, 3),
+        )]
+      ),
+      child: IconButton(
+        onPressed: (){},
+        icon: Icon(
+          tag == 'category' ? Icons.dashboard
+          : tag == 'travel' ? Icons.flight
+          : tag == 'pets' ? Icons.pets
+          : tag == 'phone' ? Icons.phone_android
+          : Icons.ac_unit,
+          size: 25,
+          color: Color(0xff800000),
+        ),
+      ),
+    );
   }
 
   @override

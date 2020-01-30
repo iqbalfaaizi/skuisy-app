@@ -12,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static String tag = 'home';
+
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Container(
@@ -19,10 +21,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Banners(),
-            HomeActions(),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.17,
+              child: HomeActions()
+            ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Card(
-              child: ListProduct()
+              child: ListProduct(tag: tag)
             ),
           ],
         )

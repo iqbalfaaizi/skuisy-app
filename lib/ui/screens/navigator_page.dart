@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/screens/cart_page.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
+import 'package:skuisy_project/ui/screens/search_page.dart';
 import 'package:skuisy_project/ui/screens/setting_page.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
@@ -17,8 +18,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       HomePage(),
-      // CartList(),
       CartPage(),
+      SearchPage(),
       ProfilePage(),
       SettingPage(),
     ];
@@ -41,6 +42,10 @@ class _NavigatorPageState extends State<NavigatorPage> {
         FFNavigationBarItem(
           iconData: Icons.shopping_cart,
           label: 'Cart',
+        ),
+        FFNavigationBarItem(
+          iconData: Icons.search,
+          label: 'Search',
         ),
         FFNavigationBarItem(
           iconData: Icons.face,
