@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     LoginPage.tag: (context) => LoginPage(),
     SignupPage.tag: (context) => SignupPage(),
-    ProductDetails.tag: (context) => ProductDetails(id: null,)
+    ProductDetails.tag: (context) => ProductDetails(description: null, id: null, picture: null, price: null, seller: null, stock: null, title: null,)
   };
 
   @override

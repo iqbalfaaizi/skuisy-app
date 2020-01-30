@@ -16,10 +16,11 @@ class _CartListState extends State<CartList> {
     backgroundColor: Color(0xff800000),
     actions: <Widget>[
       IconButton(
-          icon: Icon(
-        Icons.dehaze,
-        color: Colors.white,
-      ))
+        onPressed: (){},
+        icon: Icon(
+          Icons.dehaze,
+          color: Colors.white,
+        ))
     ],
   );
 
@@ -65,6 +66,7 @@ class _CartListState extends State<CartList> {
       child: Row(
         children: <Widget>[
           IconButton(
+            onPressed: (){},
             icon: Icon(Icons.favorite, size: 30),
           ),
           _circularButton('-'),
@@ -84,7 +86,10 @@ class _CartListState extends State<CartList> {
             ),
           ),
           _circularButton('+'),
-          IconButton(icon: Icon(Icons.delete, size: 30))
+          IconButton(
+            icon: Icon(Icons.delete, size: 30),
+            onPressed: (){},
+          )
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 
 class ProductDetails extends StatefulWidget {
   static String tag = 'product-details';
@@ -34,28 +35,82 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Color(0xff800000),
+      statusBarColor: Color(0xff800000)
+    ));
     return Scaffold(
       body: _buildBody(),
-      bottomSheet: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Text('asdasd')
-        ],
-      ),
+      bottomSheet: _buildBottomButton()
+    );
+  }
+
+  Widget _buildBottomButton() {
+    final size = MediaQuery.of(context).size;
+    return ListView(
+      shrinkWrap: true,
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 3,
+              blurRadius: 3,
+              offset: Offset(3, 0),
+            )]
+          ),
+          height: size.height * 0.08,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: size.height * 0.06,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: GFButton(
+                    onPressed: (){},
+                    text: 'Add to Cart',
+                    color: Colors.deepOrange,
+                    type: GFButtonType.outline,
+                  )
+                )
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: size.height * 0.06,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: GFButton(
+                    onPressed: (){},
+                    text: 'Buy Now',
+                    color: Colors.deepOrange,
+                    type: GFButtonType.solid,
+                  )
+                )
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 
   Widget _buildBody() {
     return SafeArea(
       child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            _buildPicture(),
-            _buildTitle(),
-            _buildDesc(),
-          ],
-        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              _buildPicture(),
+              _buildTitle(),
+              _buildRows(),
+              _buildQuantity(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.08)
+            ],
+          ),
+        )
       ),
     );
   }
@@ -194,39 +249,119 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
   
-  Widget _buildDesc() {
+  Widget _buildRows() {
+    final size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [BoxShadow(
-          color: Colors.grey.withOpacity(0.1),
-          spreadRadius: 3,
-          blurRadius: 3,
-          offset: Offset(0, 3),
-        )]
-      ),
-      alignment: Alignment.topLeft,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      margin: EdgeInsets.only(top: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      height: size.height * 0.1,
+      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.only(top: 1),
+      color: Colors.white,
+      child: Row(
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle( fontSize: 20 ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            price.toString(),
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrange
-            ),
-          ),
-          SizedBox(height: 10),
+          _rowDetails('Rating'),
+          _rowDetails('Rating'),
+          _rowDetails('Rating'),
+          _rowDetails('Rating'),
         ],
+      ),
+    );
+  }
+  
+  Widget _rowDetails(String val) {
+    return Expanded(
+      flex: 1,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            right: BorderSide(color: Colors.grey, width: 0.1),
+            bottom: BorderSide(color: Colors.grey, width: 0.05),
+          )
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(val),
+            SizedBox(height: 10),
+            Icon(Icons.star_border, color: Colors.deepOrange,)
+          ],
+        ),
       )
+    );
+  }
+
+  Widget _buildQuantity() {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.1,
+      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.only(top: 1),
+      color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text('Quantity'),
+            )
+          ),
+          Expanded(
+            flex: 1,
+            child: _quantityCounter(),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _quantityCounter() {
+    return Container(
+      alignment: Alignment.center,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey[200]
+              ),
+              child: IconButton(
+                onPressed: (){},
+                icon: Icon(Icons.navigate_before),
+              ),
+            )
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              child: TextField(
+                autofocus: false,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: '0',
+                ),
+              ),
+            )
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey[200]
+              ),
+              child: IconButton(
+                onPressed: (){},
+                icon: Icon(Icons.navigate_next),
+              ),
+            )
+          ),
+        ],
+      ),
     );
   }
 
