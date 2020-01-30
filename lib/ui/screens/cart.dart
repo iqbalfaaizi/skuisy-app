@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:skuisy_project/data/bloc/cart_bloc.dart';
-import 'package:skuisy_project/data/model/cart_model.dart';
-import 'package:skuisy_project/data/model/product_model.dart';
 
 class CartList extends StatefulWidget {
   @override
