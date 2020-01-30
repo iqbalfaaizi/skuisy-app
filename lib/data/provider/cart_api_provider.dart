@@ -19,15 +19,19 @@ class CartApiProvider {
     return cart;
   }
 
-  Future addCart(title, description,stock, price, seller) async {
-    print(title);
+  Future addCart(title, description, stock, price, seller) async {
+    final stock0 = stock?.toString();
+    final price0 = price?.toString();
     final email = await _prefs.getEmail();
-    final response = await client.put("$base_url/addcart/$email",
-        body: {"title": title, "description": description, "stock": stock, "price": price, "seller": seller});
-    if (response.statusCode == 200){
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to add cart');
-    }
+    // print(price0);
+    print(email);
+    await client.put("$base_url/addcart/$email", body: {
+      "title": title,
+      "description": description,
+      "stock": stock0,
+      "price": price0,
+      "seller": seller
+    });
+
   }
 }

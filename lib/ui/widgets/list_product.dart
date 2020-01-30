@@ -204,6 +204,17 @@ Widget _gridBuilder(AsyncSnapshot snapshot, BuildContext _context, String tag) {
           ),
         ),
         onTap: () {
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => ProductDetails(),
+          //       // Pass the arguments as part of the RouteSettings. The
+          //       // DetailScreen reads the arguments from these settings.
+          //       settings: RouteSettings(
+          //         arguments: _product,
+          //       ),
+          //     ),
+          //   );
           Navigator.push(
               context,
               MaterialPageRoute(

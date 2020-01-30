@@ -10,6 +10,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int _total = 0;
+
   final _cartAppBar = AppBar(
     title: Text('Cart List', style: TextStyle(color: Colors.white)),
     backgroundColor: Color(0xff800000),

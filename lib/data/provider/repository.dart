@@ -9,5 +9,5 @@ class Repository{
 
   Future fetchAllProduct() => productApiProvider.fetchAllProduct();
   Future fetchCart() => cartApiProvider.fetchCart();
-  Future addCart(title,description,stock,price,seller) => cartApiProvider.addCart(title, description, stock, price, seller);
+  Future addCart(title, description,stock,price,seller) => cartApiProvider.addCart(title, description, stock, price, seller);
 }
