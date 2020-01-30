@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.white,
         child: Column(
           children: <Widget>[
             Banners(),

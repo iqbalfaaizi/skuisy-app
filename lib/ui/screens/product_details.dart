@@ -79,26 +79,25 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Row(
             children: <Widget>[
               Expanded(
-                  flex: 1,
-                  child: Container(
-                      height: size.height * 0.06,
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      child: GFButton(
-                        onPressed: stock == 0
-                            ? null
-                            : () {
-                                print('asdasd');
-                                cartBloc.addCartUser(title, description,
+                flex: 1,
+                child: Container(
+                  height: size.height * 0.06,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: GFButton(
+                    onPressed: stock == 0 ? null : () {
+                      cartBloc.addCartUser(title, description,
                                     stock, price, seller);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => NavigatorPage()));
-                              },
-                        text: 'Add to Cart',
-                        color: Colors.deepOrange,
-                        type: GFButtonType.outline,
-                      ))),
+                    },
+                    text: 'Add to Cart',
+                    color: Colors.deepOrange,
+                    type: GFButtonType.outline,
+                  )
+                )
+              ),
               Expanded(
                   flex: 1,
                   child: Container(
@@ -138,96 +137,102 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   Widget _buildPicture() {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        stock != 0
-            ? Container(
-                width: size.width,
-                height: size.height * 0.5,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(picture),
-                  ),
-                ),
-              )
-            : GFImageOverlay(
-                width: size.width,
-                height: size.height * 0.5,
-                boxFit: BoxFit.fill,
-                image: NetworkImage(picture),
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.7), BlendMode.darken),
-                child: Center(
-                    child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Text('Out of Stock',
-                      style: TextStyle(color: Color(0xff800000), fontSize: 28)),
-                ))),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            height: 100,
+    return InkWell(
+      onTap: (){print('hahsahd');},
+      child: Stack(
+        children: <Widget>[
+          stock != 0 ? Container(
+            width: size.width,
+            height: size.height * 0.5,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Colors.black.withOpacity(0.7),
-                  Colors.black.withOpacity(0.5),
-                  Colors.black.withOpacity(0.07),
-                  Colors.black.withOpacity(0.05),
-                  Colors.black.withOpacity(0.025),
-                ])),
-            child: Padding(
-                padding: const EdgeInsets.only(top: 8.0), child: Container()),
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(picture),
+              ),
+            ),
+          ) :
+          GFImageOverlay(
+            width: size.width,
+            height: size.height * 0.5,
+            boxFit: BoxFit.fill,
+            image: NetworkImage(picture),
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.darken),
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Text('Out of Stock', style: TextStyle(color: Color(0xff800000), fontSize: 28)),
+              )
+            )
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Padding(
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.7),
+                    Colors.black.withOpacity(0.5),
+                    Colors.black.withOpacity(0.07),
+                    Colors.black.withOpacity(0.05),
+                    Colors.black.withOpacity(0.025),
+                  ]
+                )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Container()),
+            ), 
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    })),
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.shopping_cart),
-                      ),
-                    )),
-                Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.favorite_border),
-                      ),
-                    )),
-              ],
-            ),
-          ],
-        ),
-      ],
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                  onPressed: () { Navigator.of(context).pop(); }
+                )
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.shopping_cart),
+                        ),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.favorite_border),
+                        ),
+                      )),
+                ],
+              ),
+            ],
+          ),
+        ],
+      )
     );
   }
 
