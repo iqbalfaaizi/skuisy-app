@@ -19,7 +19,7 @@ class CartApiProvider {
     return cart;
   }
 
-  Future addCart(title, description, stock, price, seller) async {
+  Future addCart(title, description, stock, price, seller,picture) async {
     final stock0 = stock?.toString();
     final price0 = price?.toString();
     final email = await _prefs.getEmail();
@@ -29,22 +29,24 @@ class CartApiProvider {
       "description": description,
       "stock": stock0,
       "price": price0,
-      "seller": seller
+      "seller": seller,
+      "picture": picture
     });
   }
 
-    Future removeCart(title, description, stock, price, seller) async {
+    Future removeCart(title, description, stock, price, seller, picture) async {
     final stock0 = stock.toString();
     final price0 = price.toString();
     final email = await _prefs.getEmail();
     print(email);
     // await client.put("$base_url/removecart/$email", body: {
-      await client.put("http://192.168.1.9:3333/api/v1/removecart/$email", body: {
+      await client.put("$base_url/removecart/$email", body: {
       "title": title,
       "description": description,
       "stock": stock0,
       "price": price0,
-      "seller": seller
+      "seller": seller,
+      "picture": picture
     });
   }
 }

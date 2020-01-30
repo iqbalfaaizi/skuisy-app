@@ -10,12 +10,12 @@ class CartBloc {
     yield await _repository.fetchCart();
   }
 
-  addCartUser(title, description, stock, price, seller) {
-    _repository.addCart(title, description, stock, price, seller);
+  addCartUser(title, description, stock, price, seller,picture) {
+    _repository.addCart(title, description, stock, price, seller,picture);
   }
 
-  removeCartProduct(title, description, stock, price, seller) {
-    _repository.removeCart(title, description, stock, price, seller);
+  removeCartProduct(title, description, stock, price, seller,picture) {
+    _repository.removeCart(title, description, stock, price, seller,picture);
   }
 }
 

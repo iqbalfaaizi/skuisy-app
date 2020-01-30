@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:skuisy_project/data/bloc/cart_bloc.dart';
 import 'package:skuisy_project/data/bloc/product_bloc.dart';
+import 'package:skuisy_project/src/global_functions.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -33,6 +34,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  GlobalFunctions func = new GlobalFunctions();
   final id, title, description, price, stock, seller, picture;
   _ProductDetailsState(this.id, this.title, this.description, this.price,
       this.stock, this.seller, this.picture);
@@ -79,25 +81,26 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Row(
             children: <Widget>[
               Expanded(
-                flex: 1,
-                child: Container(
-                  height: size.height * 0.06,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  child: GFButton(
-                    onPressed: stock == 0 ? null : () {
-                      cartBloc.addCartUser(title, description,
-                                    stock, price, seller);
+                  flex: 1,
+                  child: Container(
+                      height: size.height * 0.06,
+                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      child: GFButton(
+                        onPressed: stock == 0
+                            ? null
+                            : () {
+                                cartBloc.addCartUser(title, description, stock,
+                                    price, seller, picture);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => NavigatorPage()));
-                    },
-                    text: 'Add to Cart',
-                    color: Colors.deepOrange,
-                    type: GFButtonType.outline,
-                  )
-                )
-              ),
+                                func.alertDialog(context, 'Added to Cart');
+                              },
+                        text: 'Add to Cart',
+                        color: Colors.deepOrange,
+                        type: GFButtonType.outline,
+                      ))),
               Expanded(
                   flex: 1,
                   child: Container(
@@ -138,102 +141,102 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget _buildPicture() {
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: (){print('hahsahd');},
-      child: Stack(
-        children: <Widget>[
-          stock != 0 ? Container(
-            width: size.width,
-            height: size.height * 0.5,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage(picture),
+        onTap: () {
+          print('hahsahd');
+        },
+        child: Stack(
+          children: <Widget>[
+            stock != 0
+                ? Container(
+                    width: size.width,
+                    height: size.height * 0.5,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(picture),
+                      ),
+                    ),
+                  )
+                : GFImageOverlay(
+                    width: size.width,
+                    height: size.height * 0.5,
+                    boxFit: BoxFit.fill,
+                    image: NetworkImage(picture),
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.7), BlendMode.darken),
+                    child: Center(
+                        child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text('Out of Stock',
+                          style: TextStyle(
+                              color: Color(0xff800000), fontSize: 28)),
+                    ))),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                      Colors.black.withOpacity(0.7),
+                      Colors.black.withOpacity(0.5),
+                      Colors.black.withOpacity(0.07),
+                      Colors.black.withOpacity(0.05),
+                      Colors.black.withOpacity(0.025),
+                    ])),
+                child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container()),
               ),
             ),
-          ) :
-          GFImageOverlay(
-            width: size.width,
-            height: size.height * 0.5,
-            boxFit: BoxFit.fill,
-            image: NetworkImage(picture),
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.darken),
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        })),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Card(
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.shopping_cart),
+                          ),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Card(
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.favorite_border),
+                          ),
+                        )),
+                  ],
                 ),
-                child: Text('Out of Stock', style: TextStyle(color: Color(0xff800000), fontSize: 28)),
-              )
-            )
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              height: 100,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.7),
-                    Colors.black.withOpacity(0.5),
-                    Colors.black.withOpacity(0.07),
-                    Colors.black.withOpacity(0.05),
-                    Colors.black.withOpacity(0.025),
-                  ]
-                )
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Container()),
-            ), 
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
-                  onPressed: () { Navigator.of(context).pop(); }
-                )
-              ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.shopping_cart),
-                        ),
-                      )),
-                  Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.favorite_border),
-                        ),
-                      )),
-                ],
-              ),
-            ],
-          ),
-        ],
-      )
-    );
+              ],
+            ),
+          ],
+        ));
   }
 
   Widget _buildTitle() {
