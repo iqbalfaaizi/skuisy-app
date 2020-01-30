@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:http/http.dart' show Client;
 import 'package:http/http.dart' as http;
 import 'package:skuisy_project/data/model/cart_model.dart';
@@ -21,7 +22,12 @@ class CartApiProvider {
   Future addCart(title, description,stock, price, seller) async {
     print(title);
     final email = await _prefs.getEmail();
-    await client.put("$base_url/addcart/$email",
+    final response = await client.put("$base_url/addcart/$email",
         body: {"title": title, "description": description, "stock": stock, "price": price, "seller": seller});
+    if (response.statusCode == 200){
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to add cart');
+    }
   }
 }
