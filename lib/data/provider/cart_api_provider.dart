@@ -23,7 +23,6 @@ class CartApiProvider {
     final stock0 = stock?.toString();
     final price0 = price?.toString();
     final email = await _prefs.getEmail();
-    // print(price0);
     print(email);
     await client.put("$base_url/addcart/$email", body: {
       "title": title,
@@ -32,6 +31,20 @@ class CartApiProvider {
       "price": price0,
       "seller": seller
     });
+  }
 
+    Future removeCart(title, description, stock, price, seller) async {
+    final stock0 = stock.toString();
+    final price0 = price.toString();
+    final email = await _prefs.getEmail();
+    print(email);
+    // await client.put("$base_url/removecart/$email", body: {
+      await client.put("http://192.168.1.9:3333/api/v1/removecart/$email", body: {
+      "title": title,
+      "description": description,
+      "stock": stock0,
+      "price": price0,
+      "seller": seller
+    });
   }
 }

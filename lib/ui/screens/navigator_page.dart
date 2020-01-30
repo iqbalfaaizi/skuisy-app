@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skuisy_project/ui/screens/cart_page.dart';
 import 'package:skuisy_project/ui/screens/home_page.dart';
+import 'package:skuisy_project/ui/screens/product_page.dart';
 import 'package:skuisy_project/ui/screens/profile_page.dart';
-import 'package:skuisy_project/ui/screens/search_page.dart';
 import 'package:skuisy_project/ui/screens/setting_page.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
@@ -19,7 +19,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
     final List<Widget> _children = [
       HomePage(),
       CartPage(),
-      SearchPage(),
+      ProductPage(),
       ProfilePage(),
       SettingPage(),
     ];

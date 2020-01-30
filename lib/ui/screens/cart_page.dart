@@ -99,7 +99,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                               _circularButton('+'),
-                              IconButton(icon: Icon(Icons.delete, size: 30))
+                              IconButton(icon: Icon(Icons.delete, size: 30),onPressed: (){cartBloc.removeCartProduct(_cart.title, _cart.description, _cart.stock, _cart.price, _cart.seller);},)
                             ],
                           ),
                         )
