@@ -40,7 +40,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       this.stock, this.seller, this.picture);
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
   TextEditingController _qtyCtrl = TextEditingController();
-  int _qty = 0;
+  int _qty = 1;
   int _total = 0;
 
   @override
@@ -361,7 +361,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               flex: 1,
               child: InkWell(
                   onTap: () {
-                    if(_qty != 0) {
+                    if(_qty != 1) {
                       setState(() {
                         _qty = _qty - 1;
                         _qtyCtrl.text = _qty.toString();
@@ -383,7 +383,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   autofocus: false,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    hintText: '0',
+                    hintText: '1',
                   ),
                   textAlign: TextAlign.center,
                   controller: _qtyCtrl,
