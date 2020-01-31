@@ -40,7 +40,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       this.stock, this.seller, this.picture);
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
   TextEditingController _qtyCtrl = TextEditingController();
-  String _qty = '';
+  int _qty = 0;
   int _total = 0;
 
   @override
@@ -65,6 +65,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   Widget _buildBottomButton() {
     final size = MediaQuery.of(context).size;
+    // print(_qty);
+    // final int _qty = 1;
+    print(_qty);
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
@@ -89,7 +92,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         onPressed: stock == 0
                             ? null
                             : () {
-                                cartBloc.addCartUser(title, description, stock,
+                                cartBloc.addCartUser(title, description, _qty,
                                     price, seller, picture);
                                 Navigator.push(
                                     context,
@@ -359,13 +362,13 @@ class _ProductDetailsState extends State<ProductDetails> {
               flex: 1,
               child: InkWell(
                   onTap: () {
-                    if(_total != 0) {
+                    if(_qty != 0) {
                       setState(() {
-                        _total = _total - 1;
-                        _qtyCtrl.text = _total.toString();
+                        _qty = _qty - 1;
+                        _qtyCtrl.text = _qty.toString();
                       });
                     }
-                    return _total;
+                    // returRn _total;
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5),
@@ -386,7 +389,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   textAlign: TextAlign.center,
                   controller: _qtyCtrl,
                   onChanged: (v) => setState(() {
-                    _qty = v;
+                    _qty == v;
                   }),
                 ),
               )),
@@ -395,9 +398,9 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: InkWell(
                   onTap: () {
                     setState(() {
-                      if(_total < stock) {
-                        _total = _total + 1;
-                        _qtyCtrl.text = _total.toString();
+                      if(_qty < stock) {
+                        _qty = _qty + 1;
+                        _qtyCtrl.text = _qty.toString();
                       }
                     });
                   },

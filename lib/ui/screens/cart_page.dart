@@ -5,7 +5,6 @@ import 'package:skuisy_project/data/bloc/cart_bloc.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:skuisy_project/data/model/cart_model.dart';
 import 'package:skuisy_project/ui/landing_page.dart';
-import 'package:skuisy_project/ui/screens/navigator_page.dart';
 import 'package:skuisy_project/utils/utils.dart';
 import 'package:skuisy_project/src/global_functions.dart';
 
@@ -114,7 +113,7 @@ class _CartPageState extends State<CartPage> {
                 (BuildContext context, AsyncSnapshot<List<Cart>> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data.length == 0) {
-                  _noData();
+                  return _noData();
                 } else {
                   return _buildCartData(snapshot);
                 }
