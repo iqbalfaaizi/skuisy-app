@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/alert/gf_alert.dart';
 import 'package:intl/intl.dart';
@@ -20,11 +22,20 @@ class _CartPageState extends State<CartPage> {
   String email;
   final NumberFormat moneyFormat = new NumberFormat("##,##0", "en_US");
   bool showalert = false;
+  
+  Timer _timer;
+  int grandtotal = 0;
 
   @override
   void initState() {
     this._userEmail();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
   }
 
   void _userEmail() async {
@@ -57,8 +68,19 @@ class _CartPageState extends State<CartPage> {
 
   Widget _buildBody() {
     return new Column(
-      children: <Widget>[_buildTotalPayment(), _buildCartList()],
+      children: <Widget>[
+        _buildTotalPayment(), 
+        _buildCartList()
+      ],
     );
+  }
+
+  _calculateTotal(int _grandtotal) {
+    _timer = new Timer(Duration(seconds: 1), () {
+      setState(() {
+        grandtotal = _grandtotal;
+      });
+    });
   }
 
   Widget _buildTotalPayment() {
@@ -76,17 +98,11 @@ class _CartPageState extends State<CartPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Total Harga',
+                        'Grand Total',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 5),
-                      Text(
-                        'Rp 1.000.326.122',
-                        style: TextStyle(
-                            color: Colors.deepOrange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      _txtGrandTotal()
                     ],
                   ),
                 )),
@@ -102,6 +118,17 @@ class _CartPageState extends State<CartPage> {
                     )))
           ],
         ));
+  }
+
+  Widget _txtGrandTotal() {
+    String gTotal = "Rp ${moneyFormat.format(grandtotal)},-";
+    return Text(
+      gTotal,
+      style: TextStyle(
+          color: Colors.deepOrange,
+          fontSize: 18,
+          fontWeight: FontWeight.bold),
+      );
   }
 
   Widget _buildCartList() {
@@ -140,7 +167,14 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
+
   Widget _buildCartData(AsyncSnapshot snapshot) {
+    int glen = snapshot.data.length;
+    Cart _total = snapshot.data[glen-1];
+    int _grandtotal = _total.grandtotal;
+    _calculateTotal(_grandtotal);
+    // grandtotal = _grandtotal;
+
     return ListView.builder(
       itemCount: snapshot.data.length,
       itemBuilder: (BuildContext contex, int index) {
@@ -172,7 +206,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   Widget _subtitleList(Cart _cart) {
-    String productPrice = "Rp ${moneyFormat.format(_cart.price)},-";
+    String productTotal = "Rp ${moneyFormat.format(_cart.total)},-";
     return Container(
         child: Row(
       children: <Widget>[
@@ -184,11 +218,11 @@ class _CartPageState extends State<CartPage> {
             children: <Widget>[
               SizedBox(height: 10),
               Text(
-                productPrice,
+                productTotal,
                 style: TextStyle(fontSize: 16, color: Colors.deepOrange),
               ),
               SizedBox(height: 5),
-              Text(_cart.stock.toString()),
+              Text('Quantity: ${_cart.stock.toString()}'),
             ],
           ),
         ),

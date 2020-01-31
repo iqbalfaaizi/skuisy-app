@@ -23,7 +23,7 @@ class CartApiProvider {
     final stock0 = stock?.toString();
     final price0 = price?.toString();
     final email = await _prefs.getEmail();
-    print(email);
+    // print(email);
     await client.put("$base_url/addcart/$email", body: {
       "title": title,
       "description": description,
@@ -38,7 +38,7 @@ class CartApiProvider {
     final stock0 = stock.toString();
     final price0 = price.toString();
     final email = await _prefs.getEmail();
-    print(email);
+    // print(email);
     // await client.put("$base_url/removecart/$email", body: {
       await client.put("$base_url/removecart/$email", body: {
       "title": title,

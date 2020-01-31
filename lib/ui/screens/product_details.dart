@@ -67,7 +67,6 @@ class _ProductDetailsState extends State<ProductDetails> {
     final size = MediaQuery.of(context).size;
     // print(_qty);
     // final int _qty = 1;
-    print(_qty);
     return ListView(
       shrinkWrap: true,
       children: <Widget>[

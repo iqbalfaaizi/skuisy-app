@@ -15,6 +15,8 @@ class Cart {
     int price;
     String seller;
     String picture;
+    int total;
+    int grandtotal;
 
     Cart({
         this.title,
@@ -22,7 +24,9 @@ class Cart {
         this.stock,
         this.price,
         this.seller,
-        this.picture
+        this.picture,
+        this.total,
+        this.grandtotal
     });
 
     factory Cart.fromJson(Map<String, dynamic> json) => Cart(
@@ -31,7 +35,9 @@ class Cart {
         stock: json["stock"],
         price: json["price"],
         seller: json["seller"],
-        picture: json["picture"]
+        picture: json["picture"],
+        total: json["total"],
+        grandtotal: json["grandtotal"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -40,6 +46,8 @@ class Cart {
         "stock": stock,
         "price": price,
         "seller": seller,
-        "picture": picture
+        "picture": picture,
+        "total": total,
+        "grandtotal": grandtotal
     };
 }
