@@ -3,7 +3,6 @@ import 'package:getflutter/getflutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:skuisy_project/data/bloc/cart_bloc.dart';
-import 'package:skuisy_project/data/bloc/product_bloc.dart';
 import 'package:skuisy_project/src/global_functions.dart';
 import 'package:skuisy_project/ui/screens/navigator_page.dart';
 

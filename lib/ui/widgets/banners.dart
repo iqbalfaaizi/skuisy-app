@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
   'https://i.pinimg.com/736x/12/eb/84/12eb84f45799372737b014e8b87daeb9.jpg',
+  'https://i.ytimg.com/vi/zogDnI3EqW8/maxresdefault.jpg',
   'https://salamadian.com/wp-content/uploads/2017/09/contoh-iklan-produk-minuman.jpg',
   'https://korea.iyaa.com/article/2017/09/__icsFiles/thumbnail/2017/09/12/miwon.jpg'
 ];
